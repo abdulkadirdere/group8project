@@ -1,0 +1,16 @@
+On Windows
+If you are using Windows GitHub Desktop app:
+? Click on File and then Clone Repository tab or press Ctrl + Shift + O to open the cloning
+screen
+? Copy and paste the following URL: https://github.com/abdulkadirdere/group8project.git
+? Select a local path directory if necessary
+? Click on Clone button.
+? This will clone the repository to your local workspace
+
+On Ubuntu
+? Open the Terminal
+? Create or navigate to the directory in which you want to clone the repository
+? Type the following in the terminal:
+$ git clone https://github.com/abdulkadirdere/group8project.git
+? Enter your username and password for GitHub account (if required)
+? This will clone the repository to your local workspace
