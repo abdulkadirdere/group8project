@@ -1,0 +1,66 @@
+﻿@model Group8.Models.Interview
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Interview</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator.Evaluator_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator.Evaluator_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGC.PGC_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGC.PGC_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview_Venue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview_Venue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Interview_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Interview_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Interview_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

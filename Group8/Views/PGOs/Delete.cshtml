@@ -1,0 +1,80 @@
+﻿@model Group8.Models.PGO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PGO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_ID_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_ID_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_Contact_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_Contact_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGO_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGO_Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
