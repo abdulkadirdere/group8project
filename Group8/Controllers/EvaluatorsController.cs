@@ -47,7 +47,7 @@ namespace Group8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Evaluator_ID,Evaluator_First_Name,Evaluator_Last_Name,Evaluator_ID_Number,Evaluator_Email,Evaluator_Contact_No,Evaluator_Type,Evaluator_Status")] Evaluator evaluator)
+        public ActionResult Create([Bind(Include = "Evaluator_ID,Evaluator_First_Name,Evaluator_Last_Name,Evaluator_ID_Number,Evaluator_Email,Evaluator_Contact_No,Evaluator_Type,Evaluator_Password,Evaluator_Status")] Evaluator evaluator)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Group8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Evaluator_ID,Evaluator_First_Name,Evaluator_Last_Name,Evaluator_ID_Number,Evaluator_Email,Evaluator_Contact_No,Evaluator_Type,Evaluator_Status")] Evaluator evaluator)
+        public ActionResult Edit([Bind(Include = "Evaluator_ID,Evaluator_First_Name,Evaluator_Last_Name,Evaluator_ID_Number,Evaluator_Email,Evaluator_Contact_No,Evaluator_Type,Evaluator_Password,Evaluator_Status")] Evaluator evaluator)
         {
             if (ModelState.IsValid)
             {

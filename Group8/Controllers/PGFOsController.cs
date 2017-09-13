@@ -47,7 +47,7 @@ namespace Group8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PGFO_ID,PGFO_First_Name,PGFO_Last_Name,PGFO_ID_Number,PGFO_Email,PGFO_Contact_No,PGFO_Status")] PGFO pGFO)
+        public ActionResult Create([Bind(Include = "PGFO_ID,PGFO_First_Name,PGFO_Last_Name,PGFO_ID_Number,PGFO_Email,PGFO_Contact_No,PGFO_Password,PGFO_Status")] PGFO pGFO)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Group8.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PGFO_ID,PGFO_First_Name,PGFO_Last_Name,PGFO_ID_Number,PGFO_Email,PGFO_Contact_No,PGFO_Status")] PGFO pGFO)
+        public ActionResult Edit([Bind(Include = "PGFO_ID,PGFO_First_Name,PGFO_Last_Name,PGFO_ID_Number,PGFO_Email,PGFO_Contact_No,PGFO_Password,PGFO_Status")] PGFO pGFO)
         {
             if (ModelState.IsValid)
             {
