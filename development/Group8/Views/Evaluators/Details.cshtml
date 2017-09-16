@@ -1,0 +1,74 @@
+﻿@model Group8.Models.Evaluator
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Evaluator</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_ID_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_ID_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Contact_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Contact_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Evaluator_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

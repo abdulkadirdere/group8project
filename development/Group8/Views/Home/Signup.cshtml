@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Create Account";
+}
+
+<h2>Create Account</h2>
+<h3>@ViewBag.Message</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Postgraduate Officer:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-4">
+                @Html.ActionLink("Create PGO", "Create", "PGOs", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Postgraduate Coordinator:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-4">
+                @Html.ActionLink("Create PGC", "Create", "PGCs", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Postgraduate Faculty Officer:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-4">
+                @Html.ActionLink("Create PGFO", "Create", "PGFOs", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Evaluator:", htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-4">
+                @Html.ActionLink("Create Evaluator", "Create", "Evaluators", null, new { @class = "btn btn-primary btn-large" })
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index", "Home")
+</div>
