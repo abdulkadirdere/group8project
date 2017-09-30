@@ -1,0 +1,564 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{tabu}
+\usepackage[margin=3.0cm]{geometry}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \huge COMS3002 Software Engineering \\
+        \LARGE Software Requirement Specification (SRS)
+        
+		\vspace{1.5cm}        
+		
+		\includegraphics[scale=0.5]{witsLogo.png} \\		
+		\vspace{1.5cm}
+        \textbf{Group 8} \\
+        \large Abdulkadir Dere - 752817\\
+        Jesse Wright - 721386 \\
+        Liam Leibrandt - 814078\\
+        Brenda Lin - 747243 \\
+        
+		\vspace{1.5cm} 
+		       
+                
+        School of Computer Science\\
+        University of Witwatersrand\\
+        28 August 2017
+        
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\pagebreak
+
+\section{Introduction}
+\subsection{Purpose}
+We will be developing an Online Postgraduate Application Approval Workflow solution for the EIE (The School of Electrical and Information Engineering). This solution is specifically developed to improve the postgraduate approval process of applicants to their graduate program. We plan to improve the efficiency and accuracy of this process by converting this currently manual process to an electronic process. Our solution will be a web application. 
+
+\subsection{Scope}
+Our aim for the project is to create an online postgraduate application approval system for the school of electrical and information engineering. This system will be as paperless as possible to keep the paperwork of the activity to a minimum. This system will be a web application. \\ \\
+Business Process \\
+The PGO will receive completed applications from students and required documents from SIMS. These applications will be checked to make sure they are ready to process. Once they are checked, the applications with the required information can be sent to one of the three users that will either recommend or not recommend an application. The three actors are the Research Group Lead, Identified Supervisor and the PGC. The application will be sent to either one of these actors based on the program that the application is for. If an interview is needed, one of the three actors can book an interview with the applicant. After the interview the user can recommend/not recommend the application. The application will then be sent to the PGC who will then accept or reject the application based on the the application being recommended or not and based on faculty rules and regulations. The PGFO will receive an email/notification about the application's status. The applicant and the schools PGO will also receive an email notifying them whether the application was accepted or rejected with an explanation.
+
+\subsection{Glossary}
+\begin{tabu} to \textwidth {| X[l] | X[l] |}
+\hline
+\textbf{Term/Acronym/Abbreviation} & \textbf{Description/Definition} \\
+\hline
+PGO & Postgraduate Officer \\
+\hline
+PGC & Postgraduate Coordinator \\
+\hline
+PGFO & Postgraduate Faculty Officer \\
+\hline
+Evaluator & Person who is responsible of evaluating the application for the recommendation phase. \\
+\hline
+EIE & The School of Electrical and Information Engineering \\
+\hline
+PAAS & Postgraduate Application Approval System \\
+\hline
+SIMS & Students Information Management System \\
+\hline
+Applicant & User who registers on the system to apply (formal request) for postgraduate degree \\
+\hline
+Application & Formal request submitted by the applicant to apply for a postgraduate degree \\
+\hline
+Associated Documentation & Any documentation that is associated with the application form. Retrieved from SIMS. These documents may also need to be analysed with the application by the users. \\
+\hline
+CRUD & Create, Read (View), Update (Edit) and Delete (Archive). Used to manage entities in the system \\
+\hline
+UX & User Experience \\
+\hline
+\end{tabu}
+
+\subsection{References}
+\begin{enumerate}
+\item Clark Wimberly, sitepoint \newline
+\texttt{https://www.sitepoint.com/5-simple-ux-principles-guide-product-design/}
+\item nancydehra, BRIGHT HUB PROJECT MANAGEMENT, \newline
+\texttt{http://www.brighthubpm.com/project-planning/60264-techniques-used-in-business- \\ requirements-gathering/}
+\end{enumerate}
+
+\subsection{Overview}
+Section 2 gives a general overview of the system. It explains the database requirements as well as what the product entails. Section 3 gives more specific requirements. It covers aspects such as hardware, software and performance requirements.
+
+\section{Overall Description}
+\subsection{Product Perspective}
+The solution we are developing will be a web application. This web application will be used by the employees of the EIE who are responsible for the postgraduate approval process of applicants to their graduate program. \\
+Our solution, the Postgraduate Application Approval System (PAAS), will provide these employees with an almost completely paperless electronic way of approving postgraduate applicants. \\
+The PAAS will be designed to:
+\begin{itemize}
+\item Send notification emails to PGO about applications that need to be processed.
+\item Redirect PGO to SIMS.
+\item Receive and view applications and associated documents.
+\item Forward documents to Evaluator (Research Group Leads, Identified Supervisors or PGCs).
+\item Set up interviews for applicant and notify them by email.
+\item Allow applications to be recommended by Evaluators.
+\item Send application to PGC.
+\item Allow PGC to accept/decline application.
+\item Send the accepted/declined applications back to PGO.
+\item Send notification email to PGFO.
+\item Send email to applicant whether he/she has been accepted.
+\item Print documents if needed at any time.
+\item Login users.
+\end{itemize}
+
+\subsection{Requirements Gathering}
+Brainstorming: We got together as a group and identifying as many possible solutions to the problem that the EIE is facing. We then simplified the solution details. Brainstorming helps casts a broad net, determining various discrete possibilities. Then simplifying and prioritizing the details of the solution. [2] \\ \\
+Observation: We were given a step-by-step walkthrough of the business process, which we believe is a more subjective form of obtaining requirements than pure observation. We then took those steps and converted them into functions for the PAAS. [2]
+
+\subsection{Product Functions}
+We will be converting what the PAAS is designed to do into use cases. \\
+Use Case List: 
+\begin{itemize}
+\item Send Email
+\item Redirect To SIMS
+\item View Documents
+\item Forward Documents
+\item Setup Interview
+\item Recommend Application
+\item Accept Application
+\item Print Document
+\item Login User \\
+\end{itemize}
+CRUD (Create, Read [View], Update [Edit], Delete [Archive]) Use Case List:
+\begin{itemize}
+\item ie. Manage PGO = Create PGO, View PGO, Update PGO, Archive PGO
+\item Manage PGO 
+\item Manage PGC
+\item Manage PGFO
+\item Manage Evaluator (Research Group Lead or Identified Supervisor)
+\item Manage Application
+\item Manage Interview
+\item Manage Document
+\end{itemize}
+
+\subsection{User Characteristics}
+The users are the people and other systems that interact with the PAAS system. A user can be primary user or a secondary user. A primary user interacts directly with the PAAS and a secondary user interacts with the PAAS indirectly. \\ \\
+User List: \\
+\begin{tabular} {| m{1.5cm} | m{3.5cm} | m{9.5cm} |}
+\hline
+\textbf{User} & \textbf{Primary/Secondary} & \textbf{Interaction with PAAS} \\
+\hline
+PGO & Primary & \begin{itemize} \itemsep0em
+\item Receives email from PAAS about applications for processing.
+\item Gets redirected to SIMS.
+\item View applications and associated documents.
+\item Forward documents to Evaluators.
+\item Send notification email to PGFO.
+\item Ability to print documents. 
+\end{itemize} \\
+\hline
+Evaluator & Primary & \begin{itemize} \itemsep0em
+\item Receive documents from PGO.
+\item View applications and associated documents.
+\item Setup applicant interviews.
+\item Recommend/Don't recommend application.
+\item Send documents to PGC and PGO.
+\item Ability to print documents.
+\end{itemize} \\
+\hline
+PGC & Primary & \begin{itemize} \itemsep0em
+\item Receive documents from PGO and Evaluators.
+\item View applications and associated documents.
+\item Accept/Reject application.
+\item Send documents to PGO.
+\item Ability to print documents.
+\end{itemize} \\
+\hline
+PGFO & Primary & \begin{itemize} \itemsep0em
+\item Receive email notifications from PGO.
+\item Send email to applicant on whether or not they accepted.
+\item Ability to print documents.
+\end{itemize} \\
+\hline
+SIMS & Secondary & \begin{itemize} \itemsep0em
+\item PGO gets redirected to SIMS from PAAS.
+\end{itemize} \\
+\hline
+Applicant & Secondary & \begin{itemize} \itemsep0em
+\item Receives interview emails.
+\item Receives email about application status.
+\end{itemize} \\
+\hline
+\end{tabular}
+
+\subsection{General Constraints}
+\textbf{Implementation} \\ 
+Not all internet browsers may work with our system. Moving from manual to digital may be time consuming, and are subject to human error. The number of active users may start out small due to human resistance towards new technology, especially those who are not computer savvy. Teaching new users how to use the system will be time-consuming. \\ \\
+Due to time constraints and the fact that we are students, the system may not be fully-functional as planned. \\ \\ \\
+\textbf{Hardware} \\
+Any device that makes use of a supported browser will be able to use the system. We cannot guarantee that all devices will be supported. \\ \\
+The system will require an internet connection. \\ \\ \\
+\textbf{Software}\\
+One needs a supported browser. There will not be an application available for mobile or computer, because it is a web-application. \\ \\
+The software may not be fully implemented as planned due to the fact that we are students and have time constraints. \\ \\ \\
+\textbf{Legal Issues} \\
+To obtain a web domain. The source code will belong to the University and therefore, if the client wants the rights to the source code, they might have to go through legal protocols to obtain it from Wits University. \\ \\
+As students we may not be given permission to access SIMS. \\ \\ \\
+\textbf{Reliability and Fault Tolerance} \\
+The system needs to be reliable and should be able to recover the student documents. It is extremely frustrating for applicants to re-upload applications because of the unreliability of the system.  \\ \\
+The system also needs have as little faults as possible, since we are working with an important process at the university, this process cannot be put on hold because of a faulty system. \\ \\ \\
+\textbf{Security} \\
+The system is working with sensitive information and cannot be compromised. Student details and marks are very private pieces of data and cannot be leaked because of a poorly designed system. \\ \\ \\
+\textbf{User} \\
+Based on the security issue mentioned above, users will only be able to access the system with a username and password. Therefore users should not have access to other users' data. \\ \\
+The PGO should not have access to make the final decision until the recommendation for the application is received from the relevant users. \\ 
+
+\subsection{Assumptions and Dependencies}
+\begin{itemize}
+\item We are assuming all users have a supported browser. We are assuming all users will use the system.
+\item We are assuming all users are computer literate. 
+\item The system will be dependant on an online database (Web Service).
+\item We are assuming that we can access SIMS. The associated documentation are dependant on SIMS.
+\item We are assuming that all applicants and users use email actively.
+\item We are assuming that applicants can submit more than one application.
+\item We are assuming that all users may need to print the application documents.
+\end{itemize}
+
+\section{Detailed Requirements}
+\subsection{External Interface Requirements}
+\subsubsection{User Interfaces}
+The user interfaces may be different depending on what type of user is logged into the system. But all interfaces will follow some fundamental UX principles. \\ \\
+Some of these UX principles are digestibility, clarity, trust, familiarity and delight. Digestibility gives the user the feeling of “I get it”. The format, components and layout of the interface should be as clear as possible so that the user can have a feeling knowing exactly what to do because of past experiences and familiarity. Clarity is used in terms of the components, fields, layout, validation, error messages and format. The formats, validation and error messages have to be clear in terms of language, ie. “the field requires a valid email address”. A user should never feel unsure when entering their details. The use of components such as date-time picker gives the user a feeling clarity and trust. The users of the PAAS should have a feeling of familiarity from the previous forms that used to fill in manually. The electronic forms should be designed around the manual forms, the formats and positions need to be as similar as possible to allow for an easier transition. A user should have a feeling of delight when using the system, they should never feel frustrated because this will lead to the users being reluctant to using the system. [1]
+
+\subsubsection{Hardware Interfaces}
+Since this solution is a web-based application, the hardware devices used must support the use of web browsers, as well as the ability to display a GUI and process input from the user in order to perform the interactions between client and server. To display the GUI of the application, a display device must be used, preferably with a DPI (dots per inch) above 300. If the DPI of the device is too low, the GUI may be too pixelated to view or give meaning to. For input, a keyboard is required. It may be a digitally displayed keyboard (on the display of a device) or a physical external keyboard. The keyboard is required for basic functionality of the application. Also on the aspect of input, a mouse or trackpad is required in order to perform basic mouse down functions as well as cursor movement. The device must have sufficient processing power and memory in order to run the web browser which will be the host of the web application on the device. 
+
+\subsubsection{Software Interfaces}
+The software used for this web-based application will be web browsers. The web browsers which this application’s functionality will be tested on are FireFox, Google Chrome and the mobile versions of these. As discussed above in section 3.1.2, the hardware devices need to be able to support FireFox and Google Chrome web browsers. 
+
+\subsubsection{Communication Interfaces}
+The system will make use of email functionality to notify the users, both primary and secondary. The email function is used to notify applicants about the status about their application. The PGO will receive emails when there are new applications to be processes. 
+
+\subsection{Functional Requirements}
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 1: & Create Application \\
+\hline
+Primary Actor: & Applicant \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The applicant must exist in the database.
+\item The applicant must be logged in. 
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new application for the system. 
+\item The system will prompt the user to enter student number, first and last name, ID number, email, contact number, school, faculty, street number, street name, suburb, city, province and documentation.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the user has successfully created an application.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate}
+\itemsep0em \item The student number exists, if so the user will be displayed a message indicating that they have already registered.
+\item An error message will be displayed and system will redirect the user to the previous page.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 2: & Redirect to SIMS \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Secondary Actor: & SIMS \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The PGO must be logged in. \item The PGO must have an application that needs to be processed. \end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to redirect to the SIMS. \item The system will open a new tab which redirects to the SIMS. \end{enumerate}\\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 3: & View Documents \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. \item The user must have an application that needs to be processed and/or the associated documents. \end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to view a certain document. \item The system will open a the document to be viewed. \end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 4: & Set Up Interview \\
+\hline
+Primary Actor: & Evaluator, PGC \\
+\hline
+Secondary Actor: & Applicant \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in.
+\item The user must have an application that needs to be processed.
+\item The application should not be evaluated.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system that they want to setup an interview with the applicant.
+\item The system will open a the interview form.
+\item The system will prompt the user to enter in the details of the interview such as a date, time, venue etc.
+\item The user will fill in these details.
+\item The system will prompt the user to confirm the interview details.
+\item The user will confirm the details.
+\item The system will notify the user that the interview creation was successful.
+\item The system will redirect the user to the home page.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not confirm the details of the interview.
+\item The system will keep the details intact, since the user could have made a small mistake that the user needs to change.
+\end{enumerate} \begin{enumerate} \itemsep0em \item  The system will notify the user that the interview creation was not successful.
+\item The system will redirect the user back to the interview form.
+\end{enumerate}\\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 5: & Recommend Application \\
+\hline
+Primary Actor: & Evaluator, PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed.
+\item The application should not be evaluated.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to a recommend an application.
+\item The system will prompt the user to confirm the recommendation.
+\item The user will confirm the recommendation.
+\item The system will initiate the Forward Documents Use Case
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not recommend the application.
+\item The system will prompt the user to confirm the recommendation.
+\item The user will confirm the recommendation.
+\item The system will initiate the Forward Documents Use Case
+\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the recommendation.
+\item The system will redirect back to the previous screen.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 6: & Accept Application \\
+\hline
+Primary Actor: & PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed.
+\item The application should be evaluated.
+\item The application should not be accepted/declined.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to a accept an application.
+\item The system will prompt the user to confirm the acception.
+\item The user will confirm the acception.
+\item The system will initiate the Forward Documents Use Case
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not accept the application.
+\item The system will prompt the user to confirm the acception.
+\item The user will confirm the acception.
+\item The system will initiate the Forward Documents Use Case
+\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the acception.
+\item The system will redirect back to the previous screen.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 7: & Print Document \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed and/or the associated documents.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to print a certain document.
+\item The system will print a the document.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 8: & Login User \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & The user cannot be logged in.  \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to log in.
+\item The system will prompt the user to enter in the username/email address and password.
+\item The user will enter these details and login.
+\item The system will direct the user to the home page.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will enter in the incorrect details.
+\item The system will show an error message and prompt the user to enter the details correctly.
+\item The user will enter these details and login.
+\item The system will direct the user to the home page.
+\end{enumerate}\\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 9: & Forward Documents \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed and/or the associated documents.
+\item The user needs to have completed his/her task.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to send the applicant's documents.
+\item The system will prompt the user to select the user to send it to.
+\item The user will select the user.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the documents were successfully sent.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not confirm the selection.
+\item The system will redirect the user to the previous page.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 10: & Send Email \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to send an email.
+\item The system will prompt the user to select the user to send it to.
+\item The user will select the user.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will prompt the user to select a predefined email, depending on the user, or allow the user to write their own email.
+\item The user will select the type of email.
+\item The user will send the email.
+\item The system will notify the user with a success message that the email was successfully sent.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item  The user will not confirm the selection.
+\item The system will redirect the user to the previous page.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 11: & Create User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new user for the system. 
+\item The system will prompt the user to insert a username and password for the new user.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the user has been successfully created.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The username has already been taken or the username/password is invalid (blank).
+\item An error message will be displayed and system will redirect the user to the previous page.
+\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the selection.
+\item The system will redirect the user to the previous page. \end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 12: & View User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to view a user in the system. 
+\item The system will prompt the user to enter a username.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will display the user in the system.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The username doesn't exist or is invalid (blank).
+\item An error message will be displayed and system will redirect the user to the previous page. \end{enumerate}
+\begin{enumerate}  \itemsep0em \item The user will not confirm the selection.
+\item The system will redirect the user to the previous page.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 13: & Update User \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to update their profile. 
+\item The system will display the user in the system and allow the user to edit the user’s attributes.
+\item The user will enter in the details that they want to change.
+\item The user will confirm these changes.
+\item The system will notify the user with a success message that the user has been successfully updated.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 14: & Archive User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to archive (delete) a user in the system. 
+\item The system will prompt the user to enter a username.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the user has been successfully archived (Deleted).
+\end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+
+\subsection{Performance Requirements}
+This application is more dependent on the accuracy of communication and information than it is dependent on the overall performance and speed of the application. We aim to have a reliable platform on which communication is priority. Although performance is not negligible, it is not a requirement at the expense of a loss of accuracy in the communication between applicant and PGO. The application will not be demanding on the hardware but it will be demanding on the bandwidth available to the device. The slower the connection to the server where the database is stored, the slower the overall interaction with the web app will be.
+
+\subsection{Design Constraints}
+The application will not be optimized for systems that run Safari browsers since there are no such devices available to our team for testing. Running the web application on a safari browser is not recommended and will be done at the user's own risk. \\ \\
+We have a major time constraint, since we are students, we have other obligations as well. Therefore the application design could suffer from this design constraint.
+
+\subsection{Software System Attributes}
+Availability: The system will be running constantly.  \\ \\
+Security: The system's security and reliability is mentioned in Section 2.4 \\ \\ 
+Maintainability: PGO will be admin and be able to create and archive users. \\
+After testing and feedback, the developers would be able to update the system to suit the user's needs.
+
+\end{document}

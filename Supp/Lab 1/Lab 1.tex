@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=3.0cm]{geometry}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        \huge COMS3002 Software Engineering \\
+        \LARGE Lab 1
+        
+		\vspace{1.5cm}        
+		
+		\includegraphics[scale=0.5]{witsLogo.png} \\		
+		\vspace{1.5cm}
+        \textbf{Group 8} \\
+        \large Abdulkadir Dere - 752817\\
+        Jesse Wright - 721386 \\
+        Liam Leibrandt - 814078\\
+        Brenda Lin - 747243 \\
+        
+		\vspace{1.5cm} 
+		       
+                
+        School of Computer Science\\
+        University of Witwatersrand\\
+        17 August 2017
+        
+    \end{center}
+\end{titlepage}
+
+\section*{Glossary}
+Postgraduate Officer - PGO \\
+Postgraduate Coordinator - PGC  \\
+Postgraduate Faculty Officer - PGFO  \\
+
+\section*{Project Description}
+Our aim for the project is to create an online postgraduate application approval system for
+the school of electrical and information engineering. This system will be completely
+paperless to keep the paperwork of the activity to a minimum. \\
+The PGO will receive completed applications from students and required documents from
+SIMS. These applications will be checked to make sure they are ready to process. Once they
+are checked, the applications with the required information can be sent to one of the three
+users that will either recommend or not recommend an application. The three actors are
+the Research Group Lead, Identified Supervisor and the PGC. The application will be sent to
+either one of these actors based on the program that the application is for. If an interview is
+needed, one of the three actors can book an interview with the applicant. After the
+interview the user can recommend/not recommend the application. The application will
+then be sent to the PGC who will then accept or reject the application based on the the
+application being recommended or not and based on faculty rules and regulations. The
+PGFO will receive an email/notification about the application's status. The applicant and the
+school’s PGO will also receive an email notifying them whether the application was accepted
+or rejected with an explanation.
+
+\section*{Project Tasks}
+\begin{itemize}
+\item Back-end: Send PGO a notification for applications to be approved.
+\item Back-end: Downloads required documents from SIMS.
+\item Back-end: Check applications to make sure there is nothing missing and there is no
+errors.
+\item Back-end: Send Research Group Lead, Identified Supervisor or PGC the application
+with relevant documents, based on on program.
+\item Back-end: Send notification email to applicant for interview.
+\item Back-end: Send the application, with relevant documents, to the PGC for acceptance
+or rejection.
+\item Back-end: Verify the application based on faculty rules and regulations.
+\item Back-end: Update SIMS and notify PGFO.
+\item Back-end: Send an email to the applicant and PGO notifying them about the
+application status with explanation.
+\item Front-end: PGO should receive notifications for applications that need to be
+approved.
+\item Front-end: The three actors should only be able to see the relevant applications with
+the required information based on the type of application.
+\item Front-end: Actor needs to have the option to send the applicant an email of all the
+details (date, time and venue) regarding the interview.
+\item Front-end: If an interview is needed, the actor can only recommend/not recommend
+an application once the interview has been conducted.
+\item Front-end: The relevant actor needs to be able to recommend/not recommend an
+application if no interview is needed.
+\item Front-end: PGC will need to be able to receive a notification and will be able to see
+all recommended/not recommended applications - in which he will then accept or
+reject the application based on the recommendation with an explanation.
+\item Front-end: The PGFO will receive a notification about applications’ status.
+\end{itemize}
+
+\section*{Student Responsibilities}
+\begin{itemize}
+\item Abdulkadir Dere - Group Leader
+\item Brenda Lin - Quality Assurance
+\item Jesse Wright - Technical Lead
+\item Liam Leibrandt - Analysis Lead
+\end{itemize}
+
+\section*{Inputs and Outputs Based on Actors}
+\subsection*{Inputs}
+\begin{itemize}
+\item Postgraduate Officer (PGO) - The PGO receives ready to process applications.
+\item Research Group Lead - The Research Group Lead receives applications waiting to be
+recommended or not recommended.
+\item Identified Supervisor - The Identified Supervisor receives applications waiting to be
+recommended or not recommended.
+\item Postgraduate Coordinator (PGC) - The PGC receives applications waiting to be
+recommended or not recommended.
+\item Postgraduate Faculty Officer (PGFO) - Notification from PGO about accepted or rejected
+application.
+\end{itemize}
+
+\subsection*{Outputs}
+\begin{itemize}
+\item Postgraduate Officer (PGO) - The PGO returns accepted/rejected applications.
+\item Research Group Lead - The Research Group Lead returns a recommended application or not
+recommended application or decides if an interview is needed.
+\item Identified Supervisor - The Identified Supervisor returns a recommended application or not recommended application or decides if an interview is needed.
+\item Postgraduate Coordinator (PGC) - The PGC returns a recommended application or not
+recommended application or decides if an interview is needed. Also accepts/rejects
+application.
+\item Postgraduate Faculty Officer (PGFO) - A sent letter to the applicant and to the school’s PGO.
+\end{itemize}
+\end{document}
