@@ -63,23 +63,25 @@ CRUD & Create, Read (View), Update (Edit) and Delete (Archive). Used to manage e
 \hline
 UX & User Experience \\
 \hline
+MVC & Model View Controller \\
+\hline
+IIS & Internet Information Service \\
+\hline
 \end{tabu}
-\subsection{Project Statement}
-The school of electrical and information engineering currently has a paper based system postgraduate approval process. 
+\subsection{Problem Statement}
+The school of electrical and information engineering currently has a paper based postgraduate approval process. The current process involves of printing out all relevant documentation and manually passing on to different actors. Some documents may get lost in the process and may cause for applications to be rejected. The manual process is also not environmentally friendly. Due to this manual process, there is a delay on the decision of the applications. The EIE requires an online application approval system to solve these issues.
 \subsection{Project Overview}
 Our aim for the project is to create an online postgraduate application approval system for the school of electrical and information engineering. This system will be completely paperless to keep the paperwork of the activity to a minimum.
 The PGO will receive completed applications from students and required documents from SIMS.
 These applications will be checked to make sure they are ready to process. Once they are checked,
 the applications with the required information can be sent to one of the three users that will either
-recommend or not recommend an application. The three actors are the Research Group Lead, Identied
-Supervisor and the PGC. The application will be sent to either one of these actors based on the program
+recommend or not recommend an application. The three actors are the Research Group Lead, Identified Supervisor and the PGC. The application will be sent to either one of these actors based on the program
 that the application is for. If an interview is needed, one of the three actors can book an interview
 with the applicant. After the interview the user can recommend/not recommend the application. The
 application will then be sent to the PGC who will then accept or reject the application based on the
 the application being recommended or not and based on faculty rules and regulations. The PGFO
-will receive an email/notication about the application's status. The applicant and the schools PGO
-will also receive an email notifying them whether the application was accepted or rejected with an
-explanation.
+will receive an email/notification about the application's status. The applicant and the schools PGO
+will also receive an email notifying them whether the application was accepted or rejected with an explanation.
 \subsection{Summary of Benefits}
 \subsection{Summary of Risks}
 
@@ -91,10 +93,9 @@ Our solution, the Postgraduate Application Approval System (PAAS), will provide 
 The PAAS will be designed to:
 \begin{itemize}
 \item Send notification emails to PGO about applications that need to be processed.
-\item Redirect PGO to SIMS.
 \item Receive and view applications and associated documents.
 \item Forward documents to Evaluator (Research Group Leads, Identified Supervisors or PGCs).
-\item Set up interviews for applicant and notify them by email.
+\item Create interviews for applicant and notify them by email.
 \item Allow applications to be recommended by Evaluators.
 \item Send application to PGC.
 \item Allow PGC to accept/decline application.
@@ -103,6 +104,8 @@ The PAAS will be designed to:
 \item Send email to applicant whether he/she has been accepted.
 \item Print documents if needed at any time.
 \item Login users.
+\item Create users.
+\item Update users if needed.
 \end{itemize}
 \subsubsection{Requirements Gathering}
 Brainstorming: We got together as a group and identifying as many possible solutions to the problem that the EIE is facing. We then simplified the solution details. Brainstorming helps casts a broad net, determining various discrete possibilities. Then simplifying and prioritizing the details of the solution. [2] \\ \\
@@ -172,10 +175,6 @@ PGFO & Primary & \begin{itemize} \itemsep0em
 \item Ability to print documents.
 \end{itemize} \\
 \hline
-SIMS & Secondary & \begin{itemize} \itemsep0em
-\item PGO gets redirected to SIMS from PAAS.
-\end{itemize} \\
-\hline
 Applicant & Secondary & \begin{itemize} \itemsep0em
 \item Receives interview emails.
 \item Receives email about application status.
@@ -205,13 +204,13 @@ Based on the security issue mentioned above, users will only be able to access t
 The PGO should not have access to make the final decision until the recommendation for the application is received from the relevant users. \\ 
 \subsubsection{Assumptions and Dependencies}
 \begin{itemize}
-\item We are assuming all users have a supported browser. We are assuming all users will use the system.
+\item We are assuming all users have a supported browser.
+\item We are assuming that all applicants are Wits students (because of time constraints we are not regarding non-Wits student applicants).
 \item We are assuming all users are computer literate. 
-\item The system will be dependant on an online database (Web Service).
-\item We are assuming that we can access SIMS. The associated documentation are dependant on SIMS.
+\item The system will be dependent on a local database.
 \item We are assuming that all applicants and users use email actively.
-\item We are assuming that applicants can submit more than one application.
 \item We are assuming that all users may need to print the application documents.
+\item We are assuming that PGO is in charge of creating users.
 \end{itemize}
 \subsection{Detailed Requirements}
 \subsubsection{External Interface Requirements} 
@@ -221,10 +220,250 @@ Some of these UX principles are digestibility, clarity, trust, familiarity and d
 \textbf{Hardware Interfaces} \\
 Since this solution is a web-based application, the hardware devices used must support the use of web browsers, as well as the ability to display a GUI and process input from the user in order to perform the interactions between client and server. To display the GUI of the application, a display device must be used, preferably with a DPI (dots per inch) above 300. If the DPI of the device is too low, the GUI may be too pixelated to view or give meaning to. For input, a keyboard is required. It may be a digitally displayed keyboard (on the display of a device) or a physical external keyboard. The keyboard is required for basic functionality of the application. Also on the aspect of input, a mouse or trackpad is required in order to perform basic mouse down functions as well as cursor movement. The device must have sufficient processing power and memory in order to run the web browser which will be the host of the web application on the device.  \\ \\
 \textbf{Software Interfaces} \\
-The software used for this web-based application will be web browsers. The web browsers which this application’s functionality will be tested on are FireFox, Google Chrome and the mobile versions of these. As discussed above in section 3.1.2, the hardware devices need to be able to support FireFox and Google Chrome web browsers.\\  \\
+The software used for this web-based application will be web browsers. The web browsers which this application’s functionality will be tested on are FireFox, Google Chrome, Microsoft Edge and the mobile versions of these. As discussed above, the hardware devices need to be able to support FireFox, Microsoft Edge and Google Chrome web browsers.\\  \\
 \textbf{Communication Interfaces} \\
 The system will make use of email functionality to notify the users, both primary and secondary. The email function is used to notify applicants about the status about their application. The PGO will receive emails when there are new applications to be processes. 
-
+\subsubsection{Functional Requirements}
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 1: & Create Application \\
+\hline
+Primary Actor: & Applicant \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The applicant must exist in the database.
+\item The applicant must be logged in. 
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new application for the system. 
+\item The system will prompt the user to enter student number, first and last name, ID number, email, contact number, school, faculty, street number, street name, suburb, city, province and documentation.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the user has successfully created an application.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate}
+\itemsep0em \item The student number exists, if so the user will be displayed a message indicating that they have already registered.
+\item An error message will be displayed and system will redirect the user to the home page.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 2: & Read Document \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. \item The user must have an application that needs to be processed and/or the associated documents. \end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to view a certain document. \item The system will open the document to be viewed. \end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 3: & Create Interview \\
+\hline
+Primary Actor: & Evaluator (any relevant actors - PGC, research group lead or identified supervisor) \\
+\hline
+Secondary Actor: & Applicant \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in.
+\item The user must have an application that needs to be processed.
+\item The application should not be evaluated.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system that they want to setup an interview with the applicant.
+\item The system will open the interview form.
+\item The system will prompt the user to enter in the details of the interview such as a date, time and venue.
+\item The user will fill in these details.
+\item The system will prompt the user to confirm the interview details.
+\item The user will confirm the details.
+\item The system will notify the user that the interview creation was successful.
+\item The system will redirect the user to the home page.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not confirm the details of the interview.
+\item The system will keep the details intact, since the user could have made a small mistake that the user needs to change.
+\end{enumerate} \begin{enumerate} \itemsep0em \item  The system will notify the user that the interview creation was not successful.
+\item The system will redirect the user back to the interview form.
+\end{enumerate}\\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 4: & Recommend Application \\
+\hline
+Primary Actor: & Evaluator, PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed.
+\item The application should not be evaluated.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to a recommend an application.
+\item The user will enter the recommendation description.
+\item The system will prompt the user to confirm the recommendation.
+\item The user will confirm the recommendation.
+\item The system will send the application to PGC for final decision.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate}  \itemsep0em \item The user will not confirm the recommendation.
+\item The system will redirect back to the previous screen.
+\end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 5: & Finalize Application \\
+\hline
+Primary Actor: & PGC \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed.
+\item The application should be evaluated.
+\item The application should not be accepted/rejected.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to accept/reject an application.
+\item The system will prompt the user to confirm the acception/rejection.
+\item The user will confirm the acception/rejection.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & None.\\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 6: & Print Document \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
+\item The user must have an application that needs to be processed and/or the associated documents.
+\end{enumerate} \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to print a certain document.
+\item The system will print the document.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 7: & Login User \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & The user cannot be logged in.  \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to log in.
+\item The system will prompt the user to enter in the username/email address and password.
+\item The user will enter these details and login.
+\item The system will direct the user to the home page.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will enter in the incorrect details.
+\item The system will show an error message and prompt the user to enter the details correctly.
+\item The user will enter these details and login.
+\item The system will direct the user to the home page.
+\end{enumerate}\\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular} {| m{5cm} | m{10cm} |}
+\hline
+Use Case 8: & Create User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new user for the system. 
+\item The system will prompt the user to insert first name, last name, email, ID number, contact number and password for the new user.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will notify the user with a success message that the user has been successfully created.
+\end{enumerate}\\
+\hline
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The  the first name, last name, email, ID number, contact number or password is invalid (blank).
+\item An error message will be displayed and system will redirect the user to the previous page.
+\end{enumerate} \begin{enumerate} \itemsep0em \item The email has already been used.
+\item An error message will be displayed and system will redirect the user to the previous page.
+\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the selection.
+\item The system will redirect the user to the previous page. \end{enumerate} \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 9: & View User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to view a user in the system. 
+\item The system will prompt the user to select a user.
+\item The system will display the user details.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 10: & Update User \\
+\hline
+Primary Actor: & PGO, Evaluator, PGC, PGFO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to update their profile. 
+\item The system will display the user in the system and allow the user to edit the user’s attributes.
+\item The user will enter in the details that they want to change.
+\item The user will confirm these changes.
+\item The system will notify the user with a success message that the user has been successfully updated.
+\end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\\ \\ \\ \\
+\begin{tabular}{| m{5cm} | m{10cm} |}
+\hline
+Use Case 11: & Archive User \\
+\hline
+Primary Actor: & PGO \\
+\hline
+Precondition: & The user must be logged in. \\
+\hline
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to archive (delete) a user in the system. 
+\item The system will prompt the user to select a user.
+\item The system will notify the user with a success message that the user has been successfully archived (Deleted).
+\end{enumerate} \\
+\hline
+Exception Scenarios: & None. \\
+\hline
+\end{tabular}
+\subsubsection{Performance Requirements}
+This application is more dependent on the accuracy of communication and information than it is dependent on the overall performance and speed of the application. We aim to have a reliable platform on which communication is priority. Although performance is not negligible, it is not a requirement at the expense of a loss of accuracy in the communication between applicant and PGO. The application will not be demanding on the hardware but it will be demanding on the bandwidth available to the device. The slower the connection to the server where the database is stored, the slower the overall interaction with the web app will be.
+\subsubsection{Design Constraints}
+The application will not be optimized for systems that run Safari browsers since there are no such devices available to our team for testing. Running the web application on a safari browser is not recommended and will be done at the user's own risk. \\ \\
+We have a major time constraint, since we are students, we have other obligations as well. Therefore the application design could suffer from this design constraint.
+\subsubsection{Software System Attributes}
+Availability: The system will be running constantly.  \\ \\
+Security: The system's security and reliability is mentioned in Section 2.4 \\ \\ 
+Maintainability: PGO will be admin and be able to create and archive users. \\
+After testing and feedback, the developers would be able to update the system to suit the user's needs.
 \section{Design}
 \subsection{Choice of a Software Development Life-Cycle}
 \subsubsection{SCRUM}
@@ -241,11 +480,12 @@ As the next sprint begins, we will choose more use cases from the backlog and be
 \end{itemize}
 \subsection{Choice of Architecture}
 \subsubsection{Three Tier Architecture}
+\textbf{DESCRIPTION OF ARCHITECTURE} \\
 \includegraphics[scale=1]{Capture2.png} 
 \begin{itemize}
 \item A Presentation Layer that sends content to browsers in the form of HTML/JS/CSS. 
 \item An Application Layer that uses an application server and processes the business logic for the application. This might be written in C\# or JavaScript.
-\item A Data Layer which is a database management system that provides access to application data. This could be SQL Server or Azure. \\
+\item A Data Layer which is a database management system that provides access to application data. This will be Microsoft SQL Server (IIS Server). \\
 \end{itemize}
 \subsubsection{Benefits}
 \begin{itemize}
@@ -258,9 +498,9 @@ It allows for team members to each work on their own areas of expertise.
 \subsection{Front-end Interface Method}
 A web application which allows for browser support will be created. There it should work on most browsers including mobile browsers.
 \subsection{Back-End Service}
-ASP.net MVC uses SQL Server and we will use a cloud service such as Azure or Amazon web services.
+ASP.net MVC uses SQL Server and we will use a local database (IIS Server) to store out details.
 \subsection{Other Supporting Software}
-Dot Net Highcharts will be used for any reporting functionality we might have.Bootstrap will also be used to make sure that the web app looks good and works on all browsers. \\
+Bootstrap will also be used to make sure that the web app looks good and works on all browsers. \\
 \subsection{Student Responsibilities}
 \begin{itemize}
 \item Abdulkadir Dere - Group Leader
@@ -270,11 +510,21 @@ Dot Net Highcharts will be used for any reporting functionality we might have.Bo
 \end{itemize}
 \subsection{Sprint Plan}
 \subsection{Use Case Diagram}
+\includegraphics[scale=0.65]{UseCaseDiagram.png} \\
+Note: Maintenance use case in the diagram refers to all the maintenance use cases specified in section 2.2.2
 \subsection{Class Model Diagram}
 \includegraphics[scale=0.5]{ERD.png} \\
 \subsection{Process Model(Flow Models)}
+\includegraphics[scale=0.6]{ApplicationSystemFlow.png} \\ 
 \subsection{Sequence Diagrams}
+\includegraphics[scale=0.7]{CreateApplicationSD.png} \\ \\
+\includegraphics[scale=0.7]{CreateInterviewSD.png} \\ \\
+\includegraphics[scale=0.7]{FinalizeApplicationSD.png} \\ \\
+\includegraphics[scale=0.7]{ReadDocumentSD.png} 
 \subsection{State Machine Diagrams}
+\includegraphics[scale=0.5]{ApplicationSMD.png} \\ \\
+\includegraphics[scale=0.7]{InterviewSMD.png} \\ \\
+\includegraphics[scale=0.75]{EmployeeSMD.png}
 
 \section{Implementation (User Manual)}
 
@@ -285,9 +535,10 @@ Functionality testing is very important because it allows us to check and ensure
 cases, are running correctly. This ensures that the data passed from users through the functions (via field forms) to the database is accurate and
 without errors. This also allows us to determine if any use cases/processes contain faulty logic or flow so that we may review and alter them. 
 \subsubsection{Case Name: Create a New Application} 
+Requirement Description: The student should be able to create an application. \\
 \begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
 \hline
-\textbf{Test Number} & \textbf{Action/ Test} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
 \hline
 \end{tabu}
 \subsection{Interface Testing}
@@ -295,10 +546,17 @@ without errors. This also allows us to determine if any use cases/processes cont
 Interface testing is very important because this is the view that our end-user interacts with in order to use the functionality of our system. We have to ensure that the interface features, components and tools run correctly. We have to ensure that the user is never confused as to how to use our system and its functions. If our interface is not user-friendly then it is highly unlikely that anyone would make use of our web-
 application.
 \subsection{Security Testing}
+\subsubsection{Motivation for Security Testing} 
+Security testing is the process of testing the system to highlight the flaws and bugs within the system with regards to confidentiality, integrity, authentication, authorisation, availability and non-repudiation. //
+Security testing is important as it maintains the systems intended functionality. It also analysis the system for any weaknesses, technical flaws or vulnerabilities.
+\subsection{User Acceptance Testing (UAT)}
+\subsubsection{Motivation for User Acceptance Testing} 
+The user of the software product performs User Acceptance Testing (UAT). The acceptance criteria is specified for a given scenario to test that certain scenario. This test is important so we can evaluate the software under actual business or real-world scenarios to check if the software meets the requirements requested by the client. If a certain scenario fails the test then the results will be analysed to classify the priority of each scenario.\\ \\
+This testing method will highlight if any feature of the system is not working. The team will use the results to reconfigure these processes.
 \subsection{Cross-Browser Compatibility Testing}
 \subsubsection{Motivation for Cross-Browser Compatibility Testing} 
 Cross browser testing is the process of testing a web application across different browsers to ensure that a web application works as intended across multiple browsers since certain components might work differently on different web browsers. \\ \\
-We shall test our web application on the following web browsers: \\ 
+We shall test our web application on the following web browsers: 
 \begin{itemize}
 \item Microsoft Edge version 40.15063.0.0
 \item Google Chrome version 60.0.3112.113
@@ -306,11 +564,11 @@ We shall test our web application on the following web browsers: \\
 \end{itemize}
 Desktop Browser tests have been conducted on Windows 10 operating system. \\ \\
 Mobile Browser tests have been conducted on Android 7.0 Nougat operating system. 
-\subsubsection{Test Case Name: Check Cross-Browser Compatibility}
-Requirement Description: The system should be compatible with different types of browsers \\ \\
+\subsubsection{Case Name: Check Cross-Browser Compatibility}
+Requirement Description: The system should be compatible with different types of browsers. \\ \\
 \begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
 \hline
-\textbf{Test Number} & \textbf{Action/ Test} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
 \hline
 1. & Access the Web Application using the Google Chrome Desktop browser (version 60.0.3112. 113) & Run the PAAS Web Application on Google Chrome Desktop Browser (version 60.0.3112. 113) &  The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
 \hline
