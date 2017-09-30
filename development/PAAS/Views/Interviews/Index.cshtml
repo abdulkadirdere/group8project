@@ -1,0 +1,63 @@
+﻿@model IEnumerable<PAAS.Models.Interview>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Application.Student_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Evaluator.Evaluator_First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview_Venue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Interview_Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Application.Student_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Evaluator.Evaluator_First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview_Venue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Interview_Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Interview_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Interview_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Interview_ID })
+        </td>
+    </tr>
+}
+
+</table>

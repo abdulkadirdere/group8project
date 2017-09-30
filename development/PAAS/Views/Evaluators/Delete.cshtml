@@ -1,0 +1,88 @@
+﻿@model PAAS.Models.Evaluator
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Evaluator</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_ID_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_ID_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Contact_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Contact_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Evaluator_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evaluator_Status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

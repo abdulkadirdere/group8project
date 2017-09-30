@@ -1,0 +1,74 @@
+﻿@model PAAS.Models.PGFO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PGFO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_First_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_Last_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_Last_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_ID_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_ID_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_Contact_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_Contact_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PGFO_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PGFO_Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PGFO_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

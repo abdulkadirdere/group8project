@@ -1,0 +1,42 @@
+﻿@model PAAS.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Application.Student_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Application.Student_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Document_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Document_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Document_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

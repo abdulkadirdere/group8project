@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PAAS.Models.PGC>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_ID_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_Contact_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PGC_Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_ID_Number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_Contact_No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PGC_Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PGC_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PGC_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PGC_ID })
+        </td>
+    </tr>
+}
+
+</table>
