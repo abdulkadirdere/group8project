@@ -254,36 +254,20 @@ Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will reque
 \hline
 Exception Scenarios: & \begin{enumerate}
 \itemsep0em \item The student number exists, if so the user will be displayed a message indicating that they have already registered.
-\item An error message will be displayed and system will redirect the user to the previous page.
+\item An error message will be displayed and system will redirect the user to the home page.
 \end{enumerate} \\
 \hline
 \end{tabular}
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 2: & Redirect to SIMS \\
-\hline
-Primary Actor: & PGO \\
-\hline
-Secondary Actor: & SIMS \\
-\hline
-Precondition: & \begin{enumerate} \itemsep0em \item The PGO must be logged in. \item The PGO must have an application that needs to be processed. \end{enumerate} \\
-\hline
-Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to redirect to the SIMS. \item The system will open a new tab which redirects to the SIMS. \end{enumerate}\\
-\hline
-Exception Scenarios: & None. \\
-\hline
-\end{tabular}
-\\ \\ \\ \\
-\begin{tabular} {| m{5cm} | m{10cm} |}
-\hline
-Use Case 3: & View Documents \\
+Use Case 2: & Read Document \\
 \hline
 Primary Actor: & PGO, Evaluator, PGC \\
 \hline
 Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. \item The user must have an application that needs to be processed and/or the associated documents. \end{enumerate} \\
 \hline
-Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to view a certain document. \item The system will open a the document to be viewed. \end{enumerate} \\
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to view a certain document. \item The system will open the document to be viewed. \end{enumerate} \\
 \hline
 Exception Scenarios: & None. \\
 \hline
@@ -291,9 +275,9 @@ Exception Scenarios: & None. \\
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 4: & Set Up Interview \\
+Use Case 3: & Create Interview \\
 \hline
-Primary Actor: & Evaluator, PGC \\
+Primary Actor: & Evaluator (any relevant actors - PGC, research group lead or identified supervisor) \\
 \hline
 Secondary Actor: & Applicant \\
 \hline
@@ -303,8 +287,8 @@ Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in.
 \end{enumerate} \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system that they want to setup an interview with the applicant.
-\item The system will open a the interview form.
-\item The system will prompt the user to enter in the details of the interview such as a date, time, venue etc.
+\item The system will open the interview form.
+\item The system will prompt the user to enter in the details of the interview such as a date, time and venue.
 \item The user will fill in these details.
 \item The system will prompt the user to confirm the interview details.
 \item The user will confirm the details.
@@ -322,7 +306,7 @@ Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not con
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 5: & Recommend Application \\
+Use Case 4: & Recommend Application \\
 \hline
 Primary Actor: & Evaluator, PGC \\
 \hline
@@ -332,16 +316,13 @@ Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in.
 \end{enumerate} \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to a recommend an application.
+\item The user will enter the recommendation description.
 \item The system will prompt the user to confirm the recommendation.
 \item The user will confirm the recommendation.
-\item The system will initiate the Forward Documents Use Case
+\item The system will send the application to PGC for final decision.
 \end{enumerate}\\
 \hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not recommend the application.
-\item The system will prompt the user to confirm the recommendation.
-\item The user will confirm the recommendation.
-\item The system will initiate the Forward Documents Use Case
-\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the recommendation.
+Exception Scenarios: & \begin{enumerate}  \itemsep0em \item The user will not confirm the recommendation.
 \item The system will redirect back to the previous screen.
 \end{enumerate} \\
 \hline
@@ -349,35 +330,28 @@ Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not rec
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 6: & Accept Application \\
+Use Case 5: & Finalize Application \\
 \hline
 Primary Actor: & PGC \\
 \hline
 Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
 \item The user must have an application that needs to be processed.
 \item The application should be evaluated.
-\item The application should not be accepted/declined.
+\item The application should not be accepted/rejected.
 \end{enumerate} \\
 \hline
-Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to a accept an application.
-\item The system will prompt the user to confirm the acception.
-\item The user will confirm the acception.
-\item The system will initiate the Forward Documents Use Case
+Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to accept/reject an application.
+\item The system will prompt the user to confirm the acception/rejection.
+\item The user will confirm the acception/rejection.
 \end{enumerate}\\
 \hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not accept the application.
-\item The system will prompt the user to confirm the acception.
-\item The user will confirm the acception.
-\item The system will initiate the Forward Documents Use Case
-\end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the acception.
-\item The system will redirect back to the previous screen.
-\end{enumerate} \\
+Exception Scenarios: & None.\\
 \hline
 \end{tabular}
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 7: & Print Document \\
+Use Case 6: & Print Document \\
 \hline
 Primary Actor: & PGO, Evaluator, PGC, PGFO \\
 \hline
@@ -386,7 +360,7 @@ Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in.
 \end{enumerate} \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to print a certain document.
-\item The system will print a the document.
+\item The system will print the document.
 \end{enumerate}\\
 \hline
 Exception Scenarios: & None. \\
@@ -395,7 +369,7 @@ Exception Scenarios: & None. \\
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 8: & Login User \\
+Use Case 7: & Login User \\
 \hline
 Primary Actor: & PGO, Evaluator, PGC, PGFO \\
 \hline
@@ -417,70 +391,22 @@ Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will enter i
 \\ \\ \\ \\
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
-Use Case 9: & Forward Documents \\
-\hline
-Primary Actor: & PGO, Evaluator, PGC, PGFO \\
-\hline
-Precondition: & \begin{enumerate} \itemsep0em \item The user must be logged in. 
-\item The user must have an application that needs to be processed and/or the associated documents.
-\item The user needs to have completed his/her task.
-\end{enumerate} \\
-\hline
-Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to send the applicant's documents.
-\item The system will prompt the user to select the user to send it to.
-\item The user will select the user.
-\item The system will prompt the user to confirm the selection.
-\item The user will confirm.
-\item The system will notify the user with a success message that the documents were successfully sent.
-\end{enumerate}\\
-\hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item The user will not confirm the selection.
-\item The system will redirect the user to the previous page.
-\end{enumerate} \\
-\hline
-\end{tabular}
-\\ \\ \\ \\
-\begin{tabular} {| m{5cm} | m{10cm} |}
-\hline
-Use Case 10: & Send Email \\
-\hline
-Primary Actor: & PGO, Evaluator, PGC, PGFO \\
-\hline
-Precondition: & The user must be logged in. \\
-\hline
-Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to send an email.
-\item The system will prompt the user to select the user to send it to.
-\item The user will select the user.
-\item The system will prompt the user to confirm the selection.
-\item The user will confirm.
-\item The system will prompt the user to select a predefined email, depending on the user, or allow the user to write their own email.
-\item The user will select the type of email.
-\item The user will send the email.
-\item The system will notify the user with a success message that the email was successfully sent.
-\end{enumerate}\\
-\hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item  The user will not confirm the selection.
-\item The system will redirect the user to the previous page.
-\end{enumerate} \\
-\hline
-\end{tabular}
-\\ \\ \\ \\
-\begin{tabular} {| m{5cm} | m{10cm} |}
-\hline
-Use Case 11: & Create User \\
+Use Case 8: & Create User \\
 \hline
 Primary Actor: & PGO \\
 \hline
 Precondition: & The user must be logged in. \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new user for the system. 
-\item The system will prompt the user to insert a username and password for the new user.
+\item The system will prompt the user to insert first name, last name, email, ID number, contact number and password for the new user.
 \item The system will prompt the user to confirm the selection.
 \item The user will confirm.
 \item The system will notify the user with a success message that the user has been successfully created.
 \end{enumerate}\\
 \hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item The username has already been taken or the username/password is invalid (blank).
+Exception Scenarios: & \begin{enumerate} \itemsep0em \item The  the first name, last name, email, ID number, contact number or password is invalid (blank).
+\item An error message will be displayed and system will redirect the user to the previous page.
+\end{enumerate} \begin{enumerate} \itemsep0em \item The email has already been used.
 \item An error message will be displayed and system will redirect the user to the previous page.
 \end{enumerate} \begin{enumerate}  \itemsep0em \item The user will not confirm the selection.
 \item The system will redirect the user to the previous page. \end{enumerate} \\
@@ -489,30 +415,24 @@ Exception Scenarios: & \begin{enumerate} \itemsep0em \item The username has alre
 \\ \\ \\ \\
 \begin{tabular}{| m{5cm} | m{10cm} |}
 \hline
-Use Case 12: & View User \\
+Use Case 9: & View User \\
 \hline
 Primary Actor: & PGO \\
 \hline
 Precondition: & The user must be logged in. \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to view a user in the system. 
-\item The system will prompt the user to enter a username.
-\item The system will prompt the user to confirm the selection.
-\item The user will confirm.
-\item The system will display the user in the system.
+\item The system will prompt the user to select a user.
+\item The system will display the user details.
 \end{enumerate} \\
 \hline
-Exception Scenarios: & \begin{enumerate} \itemsep0em \item The username doesn't exist or is invalid (blank).
-\item An error message will be displayed and system will redirect the user to the previous page. \end{enumerate}
-\begin{enumerate}  \itemsep0em \item The user will not confirm the selection.
-\item The system will redirect the user to the previous page.
-\end{enumerate} \\
+Exception Scenarios: & None. \\
 \hline
 \end{tabular}
 \\ \\ \\ \\
 \begin{tabular}{| m{5cm} | m{10cm} |}
 \hline
-Use Case 13: & Update User \\
+Use Case 10: & Update User \\
 \hline
 Primary Actor: & PGO, Evaluator, PGC, PGFO \\
 \hline
@@ -531,16 +451,14 @@ Exception Scenarios: & None. \\
 \\ \\ \\ \\
 \begin{tabular}{| m{5cm} | m{10cm} |}
 \hline
-Use Case 14: & Archive User \\
+Use Case 11: & Archive User \\
 \hline
 Primary Actor: & PGO \\
 \hline
 Precondition: & The user must be logged in. \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to archive (delete) a user in the system. 
-\item The system will prompt the user to enter a username.
-\item The system will prompt the user to confirm the selection.
-\item The user will confirm.
+\item The system will prompt the user to select a user.
 \item The system will notify the user with a success message that the user has been successfully archived (Deleted).
 \end{enumerate} \\
 \hline
