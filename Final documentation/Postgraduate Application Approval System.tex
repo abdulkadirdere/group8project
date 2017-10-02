@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage{graphicx, tabu}
+\usepackage{graphicx, tabu, hyperref}
 \usepackage[margin=2.5cm]{geometry}
 
 \begin{document}
@@ -7,7 +7,7 @@
     \begin{center}
         \vspace*{1cm}
         \huge COMS3002 Software Engineering \\
-        \LARGE Postgraduate Application Approval System
+        \LARGE Project 11 - Postgraduate Application Approval System
         
 		\vspace{1.5cm}        
 		
@@ -33,7 +33,7 @@
 
 \pagebreak
 
-\section{Vision}
+\section{Introduction}
 \subsection{Glossary}
 \begin{tabu} to \textwidth {| X[l] | X[l] |}
 \hline
@@ -68,11 +68,11 @@ MVC & Model View Controller \\
 IIS & Internet Information Service \\
 \hline
 \end{tabu}
-\subsection{Problem Statement}
-The school of electrical and information engineering currently has a paper based postgraduate approval process. The current process involves of printing out all relevant documentation and manually passing on to different actors. Some documents may get lost in the process and may cause for applications to be rejected. The manual process is also not environmentally friendly. Due to this manual process, there is a delay on the decision of the applications. The EIE requires an online application approval system to solve these issues.
+\subsection{Problem Statement and Project Purpose}
+The purpose of the Postgraduate Application Approval System is to provide an efficient, paperless, online application system to the school of Electical and Information Engineering at the University of Witwatersrand. The current system is a paper based system, dependent on manually passing application documents between staff and student alike. This process can be inefficient, unreliable as well as taxing on the environment in paper usage, making the application process highly unappealing and cumbersome to prospective students. The PAAS system is a much needed solution and will rectify any such dependencies that may have a negative affect on the application process.
 \subsection{Project Overview}
 Our aim for the project is to create an online postgraduate application approval system for the school of electrical and information engineering. This system will be completely paperless to keep the paperwork of the activity to a minimum.
-The PGO will receive completed applications from students and required documents from SIMS.
+The PGO will receive completed applications from students .
 These applications will be checked to make sure they are ready to process. Once they are checked,
 the applications with the required information can be sent to one of the three users that will either
 recommend or not recommend an application. The three actors are the Research Group Lead, Identified Supervisor and the PGC. The application will be sent to either one of these actors based on the program
@@ -83,8 +83,14 @@ the application being recommended or not and based on faculty rules and regulati
 will receive an email/notification about the application's status. The applicant and the schools PGO
 will also receive an email notifying them whether the application was accepted or rejected with an explanation.
 \subsection{Summary of Benefits}
-\subsection{Summary of Risks}
-
+\begin{itemize}
+\item Automates the application approval system.
+\item Reduces delays for the application process.
+\item Environmentally friendly.
+\item Keeps track of the process.
+\item Stores the application and other relevant data digitally.
+\item Eliminates loss of documents.
+\end{itemize}
 \section{Software Requirement Specification}
 \subsection{Overall Description}
 \subsubsection{Product Perspective}
@@ -169,15 +175,18 @@ PGC & Primary & \begin{itemize} \itemsep0em
 \item Ability to print documents.
 \end{itemize} \\
 \hline
-PGFO & Primary & \begin{itemize} \itemsep0em
+PGFO & Secondary & \begin{itemize} \itemsep0em
 \item Receive email notifications from PGO.
-\item Send email to applicant on whether or not they accepted.
 \item Ability to print documents.
 \end{itemize} \\
 \hline
-Applicant & Secondary & \begin{itemize} \itemsep0em
+Applicant & Primary & \begin{itemize} \itemsep0em
 \item Receives interview emails.
 \item Receives email about application status.
+\end{itemize} \\
+\hline
+Emailing System & Secondary & \begin{itemize}
+\itemsep0em \item Sends notification emails to the relevant actors. 
 \end{itemize} \\
 \hline
 \end{tabular}
@@ -189,14 +198,13 @@ Due to time constraints and the fact that we are students, the system may not be
 Any device that makes use of a supported browser will be able to use the system. We cannot guarantee that all devices will be supported. \\ \\
 The system will require an internet connection. \\ \\ \\
 \textbf{Software}\\
-One needs a supported browser. There will not be an application available for mobile or computer, because it is a web-application. \\ \\
-The software may not be fully implemented as planned due to the fact that we are students and have time constraints. \\ \\ \\
+One needs a supported browser. The application will be available to access from computer and mobile devices using a browser. \\ \\ \\
 \textbf{Legal Issues} \\
 To obtain a web domain. The source code will belong to the University and therefore, if the client wants the rights to the source code, they might have to go through legal protocols to obtain it from Wits University. \\ \\
 As students we may not be given permission to access SIMS. \\ \\ \\
 \textbf{Reliability and Fault Tolerance} \\
 The system needs to be reliable and should be able to recover the student documents. It is extremely frustrating for applicants to re-upload applications because of the unreliability of the system.  \\ \\
-The system also needs have as little faults as possible, since we are working with an important process at the university, this process cannot be put on hold because of a faulty system. \\ \\ \\
+The system also needs to have as little faults as possible, since we are working with an important process at the university, this process cannot be put on hold because of a faulty system. \\ \\ \\
 \textbf{Security} \\
 The system is working with sensitive information and cannot be compromised. Student details and marks are very private pieces of data and cannot be leaked because of a poorly designed system. \\ \\ \\
 \textbf{User} \\
@@ -222,7 +230,7 @@ Since this solution is a web-based application, the hardware devices used must s
 \textbf{Software Interfaces} \\
 The software used for this web-based application will be web browsers. The web browsers which this application’s functionality will be tested on are FireFox, Google Chrome, Microsoft Edge and the mobile versions of these. As discussed above, the hardware devices need to be able to support FireFox, Microsoft Edge and Google Chrome web browsers.\\  \\
 \textbf{Communication Interfaces} \\
-The system will make use of email functionality to notify the users, both primary and secondary. The email function is used to notify applicants about the status about their application. The PGO will receive emails when there are new applications to be processes. 
+The system will make use of email functionality to notify the users, both primary and secondary. The email function is used to notify applicants about the status about their application. The PGO will receive emails when there are new applications to be processed. 
 \subsubsection{Functional Requirements}
 \begin{tabular} {| m{5cm} | m{10cm} |}
 \hline
@@ -235,7 +243,10 @@ Precondition: & \begin{enumerate} \itemsep0em \item The applicant must exist in 
 \end{enumerate} \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will request to create a new application for the system. 
-\item The system will prompt the user to enter student number, first and last name, ID number, email, contact number, school, faculty, street number, street name, suburb, city, province and documentation.
+\item The system will prompt the user to enter student number, first and last name, ID number, email, contact number, school, faculty, street number, street name, suburb, city, province.
+\item The system will prompt the user to confirm the selection.
+\item The user will confirm.
+\item The system will prompt the user to upload their  documentation.
 \item The system will prompt the user to confirm the selection.
 \item The user will confirm.
 \item The system will notify the user with a success message that the user has successfully created an application.
@@ -365,7 +376,7 @@ Primary Actor: & PGO, Evaluator, PGC, PGFO \\
 Precondition: & The user cannot be logged in.  \\
 \hline
 Main Success Scenario: & \begin{enumerate} \itemsep0em \item The user will prompt the system to log in.
-\item The system will prompt the user to enter in the username/email address and password.
+\item The system will prompt the user to enter in the email address and password.
 \item The user will enter these details and login.
 \item The system will direct the user to the home page.
 \end{enumerate}\\
@@ -457,11 +468,10 @@ Exception Scenarios: & None. \\
 \subsubsection{Performance Requirements}
 This application is more dependent on the accuracy of communication and information than it is dependent on the overall performance and speed of the application. We aim to have a reliable platform on which communication is priority. Although performance is not negligible, it is not a requirement at the expense of a loss of accuracy in the communication between applicant and PGO. The application will not be demanding on the hardware but it will be demanding on the bandwidth available to the device. The slower the connection to the server where the database is stored, the slower the overall interaction with the web app will be.
 \subsubsection{Design Constraints}
-The application will not be optimized for systems that run Safari browsers since there are no such devices available to our team for testing. Running the web application on a safari browser is not recommended and will be done at the user's own risk. \\ \\
-We have a major time constraint, since we are students, we have other obligations as well. Therefore the application design could suffer from this design constraint.
+The application will not be optimized for systems that run Safari browsers since there are no such devices available to our team for testing. Running the web application on a safari browser is not recommended and will be done at the user's own risk.
 \subsubsection{Software System Attributes}
 Availability: The system will be running constantly.  \\ \\
-Security: The system's security and reliability is mentioned in Section 2.4 \\ \\ 
+Security: The system's security and reliability is mentioned in Section 2.1.5 \\ \\ 
 Maintainability: PGO will be admin and be able to create and archive users. \\
 After testing and feedback, the developers would be able to update the system to suit the user's needs.
 \section{Design}
@@ -472,7 +482,7 @@ This is how we plan to implement it:
 \begin{itemize}
 \item We will create a wish list of use cases and add them to our backlog.
 \item During sprint planning, we will pull some of the use cases from the backlog and add them to our sprint backlog, and then decide how to implement those use cases.
-Our sprint time is 2 - 3 weeks, depending on the team's availability. 
+Our sprint time is 6 - 8 weeks, depending on the team's availability. 
 \item Along the way, the ScrumMaster (Project Leader) keeps the team focused on its goal.
 \item At the end of the sprint, the use cases should be implemented and work to the best of its ability. 
 \item The sprint ends with a sprint review and retrospective.
@@ -480,7 +490,7 @@ As the next sprint begins, we will choose more use cases from the backlog and be
 \end{itemize}
 \subsection{Choice of Architecture}
 \subsubsection{Three Tier Architecture}
-\textbf{DESCRIPTION OF ARCHITECTURE} \\
+A three-tier architecture is a programming model that enables the distribution of application functionality across three independent systems. \cite{descTier} \\
 \includegraphics[scale=1]{Capture2.png} 
 \begin{itemize}
 \item A Presentation Layer that sends content to browsers in the form of HTML/JS/CSS. 
@@ -496,11 +506,24 @@ It allows for team members to each work on their own areas of expertise.
 \item It provides an ease of maintenance of the code base, managing presentation code and business logic separately, so that a change to business logic, for example, does not impact the presentation layer. \cite{tier}
 \end{itemize}
 \subsection{Front-end Interface Method}
-A web application which allows for browser support will be created. There it should work on most browsers including mobile browsers.
+A web application which allows for browser support will be created. The application should then work on  browsers including mobile browsers.
 \subsection{Back-End Service}
 ASP.net MVC uses SQL Server and we will use a local database (IIS Server) to store out details.
+\subsection{Software Requirements for the Web Application}
+The following software tools will be used:
+\begin{itemize}
+\item Visual Studio 2017
+\item SQL Server 2014
+\item .Net Framework 4.6.1
+\end{itemize}
+Please note: 
+\begin{itemize}
+\item These are the applications used in the production of the Web Application. The Web Application has been tested on these software with the specified versions. There may be configuration errors if the correct versions are not used.
+\item MVC package must be included in Visual Studio 2017.
+\item We strongly advise to run the application using Google Chrome.
+\end{itemize}
 \subsection{Other Supporting Software}
-Bootstrap will also be used to make sure that the web app looks good and works on all browsers. \\
+Bootstrap will also be used to make sure that the Web Application has a consistent theme and is compatible on all browsers. \\
 \subsection{Student Responsibilities}
 \begin{itemize}
 \item Abdulkadir Dere - Group Leader
@@ -509,12 +532,23 @@ Bootstrap will also be used to make sure that the web app looks good and works o
 \item Liam Leibrandt - Analysis Lead
 \end{itemize}
 \subsection{Sprint Plan}
+\includegraphics[scale=0.5]{Sprint1.png}\\
+\includegraphics[scale=0.65]{Sprint1Backlog.PNG}\\
+\includegraphics[scale=0.5]{Sprint2.png}\\
+\includegraphics[scale=0.65]{Sprint2Backlog.PNG}\\
+\includegraphics[scale=0.5]{Sprint3a.png}\\
+\includegraphics[scale=0.5]{Sprint3b.png}\\
+\includegraphics[scale=0.65]{Sprint3Backlog.PNG}\\ 
+\includegraphics[scale=0.5]{Sprint4a.png}\\
+\includegraphics[scale=0.5]{Sprint4b.png}\\
+\includegraphics[scale=0.5]{Sprint4c.png}\\
+\includegraphics[scale=0.65]{Sprint4Backlog.PNG}\\
 \subsection{Use Case Diagram}
 \includegraphics[scale=0.65]{UseCaseDiagram.png} \\
 Note: Maintenance use case in the diagram refers to all the maintenance use cases specified in section 2.2.2
 \subsection{Class Model Diagram}
 \includegraphics[scale=0.5]{ERD.png} \\
-\subsection{Process Model(Flow Models)}
+\subsection{Process Model (Flow Model)}
 \includegraphics[scale=0.6]{ApplicationSystemFlow.png} \\ 
 \subsection{Sequence Diagrams}
 \includegraphics[scale=0.7]{CreateApplicationSD.png} \\ \\
@@ -522,37 +556,296 @@ Note: Maintenance use case in the diagram refers to all the maintenance use case
 \includegraphics[scale=0.7]{FinalizeApplicationSD.png} \\ \\
 \includegraphics[scale=0.7]{ReadDocumentSD.png} 
 \subsection{State Machine Diagrams}
-\includegraphics[scale=0.5]{ApplicationSMD.png} \\ \\
+\includegraphics[scale=0.45]{ApplicationSMD.png} \\ \\
 \includegraphics[scale=0.7]{InterviewSMD.png} \\ \\
 \includegraphics[scale=0.75]{EmployeeSMD.png}
-
 \section{Implementation (User Manual)}
-
+\subsection{Create Application}
+\begin{center}
+\includegraphics[scale=0.5]{CreateApplication.png}\\
+\includegraphics[scale=0.5]{CreateApplication2.png}\\
+This is the application creation page.\\ \bigskip
+\includegraphics[scale=0.5]{CreateApplication3.png}\\
+\includegraphics[scale=0.5]{CreateApplication4.png}\\
+Fill in the required details and click create.\\ \bigskip
+\includegraphics[scale=0.5]{CreateApplication5.png}\\
+Confirm your details. \\ \bigskip
+\includegraphics[scale=0.5]{CreateApplication6.png}\\
+\includegraphics[scale=0.5]{CreateApplication7.png}\\
+Browse for application documents to submit. \\ \bigskip
+\includegraphics[scale=0.5]{CreateApplication8.png}\\
+\includegraphics[scale=0.5]{CreateApplication9.png}\\
+Upload the document and confirm the submission. \\ \bigskip
+\end{center}
+\subsection{Accept Application}
+\begin{center}
+\includegraphics[scale=0.45]{AcceptApplication.png}\\
+This is the application index list. Click on process. \\ \bigskip
+\includegraphics[scale=0.5]{AcceptApplication2.png}\\
+Click view application to download respective application documents.\\ \bigskip
+\includegraphics[scale=0.5]{AcceptApplication3.png}\\
+Save the document. \\ \bigskip
+\includegraphics[scale=0.5]{AcceptApplication4.png}\\
+Click accept to accept the application and confirm. \\ \bigskip
+\includegraphics[scale=0.5]{AcceptApplication5.png}\\
+Leave feedback on the accepted application.\\ \bigskip
+\includegraphics[scale=0.5]{AcceptApplicationReject.png}\\
+Click reject to reject the application and confirm.\\ \bigskip
+\end{center}
+\subsection{Recommend Application}
+\begin{center}
+\includegraphics[scale=0.45]{RecommendApplication.png}\\
+This is the application index list. Click on process.\\ \bigskip
+\includegraphics[scale=0.5]{RecommendApplication2.png}\\
+Click view application to download respective application documents.\\ \bigskip
+\includegraphics[scale=0.5]{RecommendApplication3.png}\\
+Save the document.\\ \bigskip
+\includegraphics[scale=0.5]{RecommendApplication4.png}\\
+Click recommend to recommend the application and confirm.\\ \bigskip
+\includegraphics[scale=0.5]{RecommendApplication5.png}\\
+\includegraphics[scale=0.5]{RecommendApplication6.png}\\
+Leave feedback on the recommendation and confirm. \\ \bigskip
+\includegraphics[scale=0.5]{RecommendApplicationNotRecommended.png}\\
+Click do not recommend to not recommend the application and confirm.\\ \bigskip
+\end{center}
+\subsection{Create Interview}
+\begin{center}
+\includegraphics[scale=0.45]{CreateInterview.png}\\
+This is the application index list. Click on create interview.\\ \bigskip
+\includegraphics[scale=0.5]{CreateInterview2.png}\\
+\includegraphics[scale=0.5]{CreateInterview3.png}\\
+Fill in the appropriate details and confirm the interview slot.\\ \bigskip
+\end{center}
+\subsection{Process Interview}
+\begin{center}
+\includegraphics[scale=0.5]{ProcessInterview.png}\\
+This is the interview index list. Click on complete.\\ \bigskip
+\includegraphics[scale=0.5]{ProcessInterviewComplete.png}\\
+Confirm that the interview has been completed.\\ \bigskip
+\includegraphics[scale=0.5]{ProcessInterviewCancelled.png}\\
+Click on cancel and confirm that the interview has been cancelled.\\ \bigskip
+\end{center}
+\subsection{Verify Application}
+\begin{center}
+\includegraphics[scale=0.5]{VerifyApplication.png}\\
+This is the application verification index list. Click verify.\\ \bigskip
+\includegraphics[scale=0.5]{VerifyApplication2.png}\\
+Click view application to download respective application documents.\\ \bigskip
+\includegraphics[scale=0.5]{VerifyApplication3.png}\\
+Save the document.\\ \bigskip
+\includegraphics[scale=0.5]{VerifyApplication4.png}\\
+Click verify and confirm the verification.\\ \bigskip
+\end{center}
 \section{Testing}
 \subsection{Functionality Testing}
 \subsubsection{Motivation for Functionality Testing} 
 Functionality testing is very important because it allows us to check and ensure that all functions that we have implemented for our system’s use
 cases, are running correctly. This ensures that the data passed from users through the functions (via field forms) to the database is accurate and
 without errors. This also allows us to determine if any use cases/processes contain faulty logic or flow so that we may review and alter them. 
-\subsubsection{Case Name: Create a New Application} 
+\subsubsection{Case Name: Create Application} 
 Requirement Description: The student should be able to create an application. \\
 \begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
 \hline
 \textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
 \hline
+1 & Applicant will prompt the system to create a new application. & & Application form opens. & The system did as expected. & Pass & \\
+\hline
+2 & The system will prompt the user to enter student number,
+first and last name, ID number, email, contact number,
+school, faculty, street number, street name, suburb, city and
+province. & student number, first and last name, ID number, email, contact number, school, faculty, street number, street name, suburb, city and
+province & The form will be filled with applicant’s details. & The system did as expected. & Pass & \\
+\hline
+3 & The system will prompt the user to upload their documentation in a .pdf format. & Documenta- tion in pdf format. & The document(s) will be uploaded. & The system did as expected. & Pass & \\
+\hline
+4 & The user will confirm the selection after the system has prompted the user. & & The creation of the application will be confirmed. & The system did as expected. & Pass & \\
+\hline
 \end{tabu}
-\subsection{Interface Testing}
-\subsubsection{Motivation for Interface Testing} 
-Interface testing is very important because this is the view that our end-user interacts with in order to use the functionality of our system. We have to ensure that the interface features, components and tools run correctly. We have to ensure that the user is never confused as to how to use our system and its functions. If our interface is not user-friendly then it is highly unlikely that anyone would make use of our web-
-application.
+\subsubsection{Case Name: Read Document} 
+Requirement Description: The user should be able to download the a required document. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & The actor will select the document to be viewed. & & The document will be downloaded. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
+\subsubsection{Case Name: Create Interview} 
+Requirement Description: The user should be able to request an interview with the applicant. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & The actor will prompt the system for an interview form. & & The system will open the interview form. & The system did as expected. & Pass & \\
+\hline
+2 & The system will prompt the actor to enter date time and venue of the interview. & Date, time and venue & The form will be filled with interview’s details. & The system did as expected. & Pass & \\
+\hline
+3 & The user will confirm the selection after the system has prompted the user. & & The creation of the interview will be confirmed. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
+\subsubsection{Case Name: Recommend Application} 
+Requirement Description: The user should be able to recommend an application. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & The actor will prompt the system to recommend an application. & & The system will open the recommendation form. & The system did as expected. & Pass & \\
+\hline
+2 & The system will prompt the user to enter a recommendation description. & Recommen- dation description. & The form will be filled with the recommendation description. & The system did as expected. & Pass & \\
+\hline
+3 & The user will confirm the selection after the system has prompted the user. & & The recommendation will be confirmed. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
+\subsubsection{Case Name: Finalize Application} 
+Requirement Description: The user should be able to reject or accept an application. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & The actor will prompt the system to finalize an application. & & The system will open the finalization form. & The system did as expected. & Pass & \\
+\hline
+2 & The system will prompt the user to enter a finalization description. & Finalization description. & The system will open the finalization form. & The system did as expected. & Pass & \\
+\hline
+3 & The user will confirm the selection after the system has prompted the user. & & The finalization of the application will be confirmed. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
+\subsubsection{Case Name: Login User} 
+Requirement Description: The user should be able to download the a required document. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & The actor will prompt the system to login. & & The system will open the login page. & The system did as expected. & Pass & \\
+\hline
+2 & The system will prompt the user to enter in their email and password. & Email and password & The login details will be filled with the actors email and password. & The system did as expected. & Pass & \\
+\hline
+3 & The user will confirm the selection after the system has prompted the user. & & The user will be logged in. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
 \subsection{Security Testing}
 \subsubsection{Motivation for Security Testing} 
-Security testing is the process of testing the system to highlight the flaws and bugs within the system with regards to confidentiality, integrity, authentication, authorisation, availability and non-repudiation. //
-Security testing is important as it maintains the systems intended functionality. It also analysis the system for any weaknesses, technical flaws or vulnerabilities.
+Security testing is the process of testing the system to highlight the flaws and bugs within the system with regards to confidentiality, integrity, authentication, authorisation, availability and non-repudiation. \\
+Security testing is important as it maintains the systems intended functionality. It also analysis the system for any weaknesses, technical flaws or vulnerabilities.\subsubsection{Case Name: Security Testing for PAAS} 
+Requirement Description: The system should be able to detect any flaws in confidentiality integrity, authentication, authorisation and non-repudiation. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & (Confiden- tiality) Enter the URL manually to access to the Create User page & \url{http://localhost:53861/PGOs/create} & User shouldn’t be able to view the content of the Create User (hence don’t have access to customer details) & Create User page is displayed. & Fail & Create User page is
+displayed by bypassing the login  in screen so page is visible to the user without login in. \\
+\hline
+2 & (Integrity) Enter the URL manually to access to the user edit page & \url{http://localhost:53861/PGOs/Edit/1} & User shouldn’t be able to edit the content of a user without logging in & User Edit page is displayed & Fail & User Edit page has been shown to the user, so the user can edit the user details without login in \\
+\hline
+3 & (Authenti- cation) Enter the correct login details on the Login page and click on Login button & Email Address: \url{admin@admin.co.za} Password: admin & Login details are accepted and user can view the Staff Portal’s page & The system does as expected. & Pass & \\
+\hline
+4 & (Authenti- cation) Enter the wrong
+login details on the Login page and click on Login button  & Email Address: \url{trkye@yahoo.com} Password: pass123 & Login details are rejected and user can’t view the Staff Portal’s page &  The system does as expected. & Pass &\\ 
+\hline
+5 & (Authorisation) Enter the URL manually to access to the Application Interviews & \url{http://localhost:53861/Interviews/ApplicationsInterviews} & User shouldn’t be able to see the content of the Application Interviews list without logging in &  Application Interviews page is not displayed to the user. User is asked to login. & Pass &\\ 
+\hline
+6 & (Availability) View the user details in
+the PGO view and compare it to the PGO details in the database & \url{http://localhost:53861/PGOs/index} & PGO details in the PGO view page and
+PGO details in the PGO Table should match & The system does as expected. & Pass & \\
+\hline
+\end{tabu}
+\pagebreak
+\linebreak
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+7 & (Non-repudiation) Download the uploaded PDF document in the database. & & User should be able to
+view if the uploaded PDF document has been created in the database & The system does as expected. & Pass & \\
+\hline
+\end{tabu}
 \subsection{User Acceptance Testing (UAT)}
 \subsubsection{Motivation for User Acceptance Testing} 
 The user of the software product performs User Acceptance Testing (UAT). The acceptance criteria is specified for a given scenario to test that certain scenario. This test is important so we can evaluate the software under actual business or real-world scenarios to check if the software meets the requirements requested by the client. If a certain scenario fails the test then the results will be analysed to classify the priority of each scenario.\\ \\
 This testing method will highlight if any feature of the system is not working. The team will use the results to reconfigure these processes.
+\subsubsection{Case Name: Create Application} 
+Requirement Description: The system should be able to validate the user input and evaluate the given use case. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & Fill-in all the input
+boxes with valid information in Create Application & Student
+Number:789654
+First Name: James
+Last Name: Doe
+ID Number:
+9403056132181
+Email address:
+jamesdoe@gmail.com
+Contact Number:
+0725896321
+School: Information
+Systems
+Faculty: Science
+Street Number: 21
+Street Name: Inner
+Street
+Suburb: Observatory
+City: Johannesburg
+Province: Gauteng & The user should be
+directed to the confirmation page of Create Application. & The system did as expected. & Pass & \\
+\hline
+2 & Do not fill-in any of the input boxes
+on the Create Application page & 
+Student Number:
+First Name:
+Last Name:
+ID Number:
+Email address:
+Contact Number:
+School:
+Faculty:
+Street Number:
+Street Name:
+Suburb:
+City:
+Province:
+& The user will be asked
+to enter the required
+details with a warning
+under the empty fields. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
+\subsubsection{Case Name: Create Interview} 
+Requirement Description: The system should be able to validate the user input and evaluate the given use case. \\
+\begin{tabu} to \textwidth {| X[l] | X[l] | X[l] | X[l] | X[l] | X[l] | X[l]|}
+\hline
+\textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
+\hline
+1 & Fill-in all the input
+boxes with valid information in Create Interview & Date: 2017/09/30
+Interview Time: 01:30PM
+Venue: CLM & The user should be
+directed to the confirmation page of Create Interview. & The system did as expected. & Pass & \\
+\hline
+2 & Do not fill-in any of the input boxes on the Create Interview Page & Date: 
+Interview Time:
+Venue:  & The user will be asked to enter the required details with a error warning under the empty fields. & The system did as expected. & Pass & \\
+\hline
+2 & Do not fill-in any of the input boxes
+on the Create Application page & 
+Student Number:
+First Name:
+Last Name:
+ID Number:
+Email address:
+Contact Number:
+School:
+Faculty:
+Street Number:
+Street Name:
+Suburb:
+City:
+Province:
+& The user will be asked
+to enter the required
+details with a warning
+under the empty fields. & The system did as expected. & Pass & \\
+\hline
+\end{tabu}
 \subsection{Cross-Browser Compatibility Testing}
 \subsubsection{Motivation for Cross-Browser Compatibility Testing} 
 Cross browser testing is the process of testing a web application across different browsers to ensure that a web application works as intended across multiple browsers since certain components might work differently on different web browsers. \\ \\
@@ -570,23 +863,26 @@ Requirement Description: The system should be compatible with different types of
 \hline
 \textbf{Test Number} & \textbf{Action/ Task} & \textbf{Test Input} & \textbf{Expected Results} & \textbf{Actual Results} & \textbf{Pass/Fail} & \textbf{Comments} \\
 \hline
-1. & Access the Web Application using the Google Chrome Desktop browser (version 60.0.3112. 113) & Run the PAAS Web Application on Google Chrome Desktop Browser (version 60.0.3112. 113) &  The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
+1 & Access the Web Application using the Google Chrome Desktop browser (version 60.0.3112. 113) & Run the PAAS Web Application on Google Chrome Desktop Browser (version 60.0.3112. 113) &  The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
 \hline
-2. & Access the Web Application using the Google Chrome Mobile browser (version 60.0.3112. 116) & Run the PAAS Web Application on Google Chrome Mobile Browser (version 60.0.3112. 116) &  The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
+2 & Access the Web Application using the Google Chrome Mobile browser (version 60.0.3112. 116) & Run the PAAS Web Application on Google Chrome Mobile Browser (version 60.0.3112. 116) &  The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
 \hline
-3. & Access the Web Application using the Mozilla Firefox Desktop browser (version 55.0.3) & Run the PAAS Web Application on Mozilla Firefox Desktop Browser (version 55.0.3) & The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
+3 & Access the Web Application using the Mozilla Firefox Desktop browser (version 55.0.3) & Run the PAAS Web Application on Mozilla Firefox Desktop Browser (version 55.0.3) & The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
 \hline
-4. & Access the Web Application using the Mozilla Firefox Mobile browser (version 55.0.2) & Run the PAAS Web Application on Mozilla Firefox Mobile Browser (version 55.0.2) & The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
+4 & Access the Web Application using the Mozilla Firefox Mobile browser (version 55.0.2) & Run the PAAS Web Application on Mozilla Firefox Mobile Browser (version 55.0.2) & The user should be able to view and interact with the PAAS website, including login into the system & The system did as expected & Pass & \\
 \hline
-5. & Access the Web Application using the Microsoft Edge browser (version 40.15063.0.0) & Run the PAAS Web Application on Microsoft Edge browser (version 40.15063.0.0) & The user should be able to view and interact with PAAS website, including login into the system & The system did as expected & Pass & \\
+5 & Access the Web Application using the Microsoft Edge browser (version 40.15063.0.0) & Run the PAAS Web Application on Microsoft Edge browser (version 40.15063.0.0) & The user should be able to view and interact with PAAS website, including login into the system & Failed to display date/time picker & Fail & \\
 \hline
 \end{tabu}
 \subsection{Test Summary}
+Functionality Testis was successful for all specified use cases. The system was able to achieve all the requests from the users side. The system was able to create an application, download a document, create an interview, recommend an application and login users.\\ \\
+Security Test was successful in authenticating the user when the user enters the correct and incorrect details. System can detect if the user should be allowed to access or not. Users may not manually access via the URL. Logged in users may be able to download the files requested. \\ \\
+User Acceptance Testing has been conducted on specified use cases. The validity of the input details are checked. The user may not leave any boxes unfilled. \\ \\
 Cross Browser Compatibility Test was successful for all the specified browsers except Microsoft Edge. Microsoft Edge does not display the Date Picker. So, the user cannot view Date Picker hence they can’t select a date. This feature works well with other browsers. After analyses and research, we have found that Microsoft Edge has default style and selector for date. The default style takes precedence over additional styling done through the plugin. The user can still enter a date manually with the format of “yyyy/mm/dd”. This is problematic as the does not know the format hence will not be able to enter the correct date format. This issue is noted and will be fixed in construction phase.
 
 \begin{thebibliography}{9}
 \bibitem{product-design}
-Clark Wimberly, sitepoint \\
+Clark Wimberly, sitepoint, \\
 \texttt{https://www.sitepoint.com/5-simple-ux-principles-guide-product-design/}
 
 \bibitem{Scrum}
@@ -597,6 +893,11 @@ Scrum Alliance, \\
 Bob Pepalis, IZENDA, \\
 \texttt{https://www.izenda.com/blog/5-benefits-3-tier-architecture/}
 
+\bibitem{descTier}
+IBM Knowledge Centre, \\
+\texttt{https://www.ibm.com/support/knowledgecenter/en/SSAW57\_8.5.5/com.ibm.websphere.nd.doc/ \linebreak ae/covr\_3-tier.html}
+
 \end{thebibliography}
+
 
 \end{document}
