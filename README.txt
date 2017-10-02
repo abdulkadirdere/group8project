@@ -38,3 +38,13 @@ Go to Tools->NuGet Package Manager->Package Manager Console. The console is star
 1) Enable-Migrations
 2) Add-Migration Initial -Force
 3) Update-Database
+
+4) Testing the system:
+-Go to server explorer, the tables are there with all in the data in the database. You can view this data by right clicking on the table and selecting 'Show Table Data'. This will reveal what is in the database. 
+
+-Use the above method to view the different types of users, their email addresses and passwords. You will need this to navigate the site. Please refer to our documents and the code to determine which users have access to certain functions of the site.
+
+-For a quick reference: 
+ --PGO	     : Email - linsey@fred.com,  Password - linsey
+ --Evaluator : Email - liam@lei.com,     Password - liamlei
+ --PGC	     : Email - brent@alley.com,  Password - brentalley
