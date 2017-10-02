@@ -8,6 +8,7 @@
         Applying to a postgraduate course at the University of Witwatersrand has never been easier. PAAS makes the entire application
         process paperless and streamlines the process from start to finish, ensuring that the applicant gets an efficient evaluation and a swift reply with their application status.
     </p>
+        <img src="@Url.Content("~/Images/ArcSchlLogo.png")" alt="Thumbnail image" style="width:200px;height:200px;" />
 </div>
 
 <div class="row">
@@ -18,11 +19,5 @@
             and easy, and shouldn't take more than 20 minutes to complete.
         </p>
         @Html.ActionLink("Apply Now", "Create", "Applications", null, new { @class = "btn btn-primary btn-large" })
-    </div>
-    <div class="col-md-6">
-        <h2>Check your status</h2>
-        <p style="font-size:130%;">Already submitted an application? View your application status and interview arrangements by logging in below using the same details provided in your application.</p>
-        <br />
-        @Html.ActionLink("Login", "ApplicantLogin", "Home", null, new { @class = "btn btn-primary btn-large" })
     </div>
 </div>

@@ -4,14 +4,14 @@
     ViewBag.Title = "Verify Application List";
 }
 
-<h2>VerifyApplication</h2>
+<h2>Verify Application</h2>
 
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Student_No)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Application_Status)
         </th>
         <th>
@@ -19,7 +19,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Application_Decision_Desc)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Applicant_First_Name)
         </th>
@@ -65,7 +65,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Student_No)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Application_Status)
             </td>
             <td>
@@ -73,7 +73,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Application_Decision_Desc)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Applicant_First_Name)
             </td>

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PAAS.Models.Document>
+@{
+    ViewBag.Title = "Download";
+}
+
+<h2>Download</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th class="col-md-4">
+            @Html.DisplayNameFor(model => model.Document_Name)
+        </th>
+
+        <th class="col-md-2"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Document_Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Downlaod", "DownLoadFile", new { id = item.Id })
+
+            </td>
+        </tr>
+    }
+
+</table>   
+

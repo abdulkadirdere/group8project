@@ -46,7 +46,9 @@ namespace PAAS.Models
         [Display(Name = "Email address*")]
         public string Applicant_Email { get; set; }
 
-        [Display(Name = "Contact Number")]
+        [Required(ErrorMessage = "Please enter your contact number.")]
+        [Phone(ErrorMessage = "Invalid Phone Number")]
+        [Display(Name = "Contact Number*")]
         public string Applicant_Contact_No { get; set; }
 
         [Required(ErrorMessage = "Please enter the school name of application.")]

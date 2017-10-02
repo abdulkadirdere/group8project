@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PAAS</RootNamespace>
     <AssemblyName>PAAS</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -63,11 +67,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -109,6 +109,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -156,6 +157,7 @@
     <Compile Include="Controllers\PGCsController.cs" />
     <Compile Include="Controllers\PGFOesController.cs" />
     <Compile Include="Controllers\PGOsController.cs" />
+    <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="DAL\PAASContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,9 +194,42 @@
     <Compile Include="Migrations\201709301853536_Initial7.Designer.cs">
       <DependentUpon>201709301853536_Initial7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710011119292_Initial8.cs" />
+    <Compile Include="Migrations\201710011119292_Initial8.Designer.cs">
+      <DependentUpon>201710011119292_Initial8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011144555_Initial9.cs" />
+    <Compile Include="Migrations\201710011144555_Initial9.Designer.cs">
+      <DependentUpon>201710011144555_Initial9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011309491_Initial10.cs" />
+    <Compile Include="Migrations\201710011309491_Initial10.Designer.cs">
+      <DependentUpon>201710011309491_Initial10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011316228_Initial11.cs" />
+    <Compile Include="Migrations\201710011316228_Initial11.Designer.cs">
+      <DependentUpon>201710011316228_Initial11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011319031_Initial12.cs" />
+    <Compile Include="Migrations\201710011319031_Initial12.Designer.cs">
+      <DependentUpon>201710011319031_Initial12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011326015_Initial13.cs" />
+    <Compile Include="Migrations\201710011326015_Initial13.Designer.cs">
+      <DependentUpon>201710011326015_Initial13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011329531_Initial14.cs" />
+    <Compile Include="Migrations\201710011329531_Initial14.Designer.cs">
+      <DependentUpon>201710011329531_Initial14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710011555158_Initial15.cs" />
+    <Compile Include="Migrations\201710011555158_Initial15.Designer.cs">
+      <DependentUpon>201710011555158_Initial15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\EMPmodel.cs" />
     <Compile Include="Models\Evaluator.cs" />
     <Compile Include="Models\Interview.cs" />
     <Compile Include="Models\PGC.cs" />
@@ -210,6 +245,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\ArcSchlLogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -279,6 +315,16 @@
     <Content Include="Views\Applications\Verify.cshtml" />
     <Content Include="Views\Interviews\ApplicationsInterviews.cshtml" />
     <Content Include="Views\Interviews\InterviewList.cshtml" />
+    <Content Include="Views\Documents\Upload.cshtml" />
+    <Content Include="Views\Documents\Download.cshtml" />
+    <Content Include="Views\Applications\RecommendApplicationList.cshtml" />
+    <Content Include="Views\Applications\Recommend.cshtml" />
+    <Content Include="Views\Applications\RecommendDesciption.cshtml" />
+    <Content Include="Views\Applications\Accept.cshtml" />
+    <Content Include="Views\Applications\AcceptApplicationList.cshtml" />
+    <Content Include="Views\Applications\AcceptDesciption.cshtml" />
+    <Content Include="Views\Security\Login.cshtml" />
+    <Content Include="Views\Security\LoginError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -320,6 +366,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709301853536_Initial7.resx">
       <DependentUpon>201709301853536_Initial7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011119292_Initial8.resx">
+      <DependentUpon>201710011119292_Initial8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011144555_Initial9.resx">
+      <DependentUpon>201710011144555_Initial9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011309491_Initial10.resx">
+      <DependentUpon>201710011309491_Initial10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011316228_Initial11.resx">
+      <DependentUpon>201710011316228_Initial11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011319031_Initial12.resx">
+      <DependentUpon>201710011319031_Initial12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011326015_Initial13.resx">
+      <DependentUpon>201710011326015_Initial13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011329531_Initial14.resx">
+      <DependentUpon>201710011329531_Initial14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710011555158_Initial15.resx">
+      <DependentUpon>201710011555158_Initial15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

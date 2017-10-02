@@ -22,18 +22,20 @@ namespace PAAS.Controllers
             return View(interviews.ToList());
         }
 
+        [Authorize(Users = "PGC, Evaluator")]
         public ActionResult ApplicationsInterviews()
         {
             var application = db.Applications;
             List<Application> ApplicationList = new List<Application>();
             foreach (Application X in application)
             {
-                if (X.Application_Status.Equals("Verified"))
+                if (X.Application_Status.Equals("Verified") || X.Application_Status.Equals("InterviewCancelled"))
                     ApplicationList.Add(X);
             }
             return View(ApplicationList);
         }
 
+        [Authorize(Users = "PGC, Evaluator")]
         public ActionResult InterviewList()
         {
             var interview = db.Interviews;
@@ -56,15 +58,40 @@ namespace PAAS.Controllers
             
         }
 
+        [Authorize(Users = "PGC, Evaluator")]
         public ActionResult Complete(int? id)
         {
             Interview x = db.Interviews.Find(id);
             x.Interview_Status = "InterviewCompleted";
 
+            int i = x.Application_ID;
+
+            Application a = db.Applications.Find(i);
+            a.Application_Status = "InterviewCompleted";
+
+            db.Entry(a).State = EntityState.Modified;
             db.Entry(x).State = EntityState.Modified;
             db.SaveChanges();
 
-            return View("InterviewList");
+            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize(Users = "PGC, Evaluator")]
+        public ActionResult Cancel(int? id)
+        {
+            Interview x = db.Interviews.Find(id);
+            x.Interview_Status = "InterviewCancelled";
+
+            int i = x.Application_ID;
+
+            Application a = db.Applications.Find(i);
+            a.Application_Status = "InterviewCancelled";
+
+            db.Entry(a).State = EntityState.Modified;
+            db.Entry(x).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Interviews/Details/5
@@ -83,11 +110,12 @@ namespace PAAS.Controllers
         }
 
         // GET: Interviews/Create
+        [Authorize(Users = "PGC, Evaluator")]
         public ActionResult Create(int? id)
         {
             List<Application> a = new List<Application>();
             a.Add(db.Applications.Find(id));
-            ViewBag.Application_ID = new SelectList(db.Applications, "Application_ID", "Application_ID"); ;
+            ViewBag.Application_ID = new SelectList(a, "Application_ID", "Application_ID"); ;
             ViewBag.Evaluator_ID = new SelectList(db.Evaluators, "Evaluator_ID", "Evaluator_First_Name");
             return View();
         }
@@ -103,15 +131,21 @@ namespace PAAS.Controllers
             if (ModelState.IsValid)
             {
                 interview.Interview_Status = "InterviewPending";
+                int i = interview.Application_ID;
+                Application a = db.Applications.Find(i);
+                a.Application_Status = "InterviewPending";
+
+                db.Entry(a).State = EntityState.Modified;
                 db.Interviews.Add(interview);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.Application_ID = new SelectList(db.Applications, "Application_ID", "Student_No", interview.Application_ID);
             ViewBag.Evaluator_ID = new SelectList(db.Evaluators, "Evaluator_ID", "Evaluator_First_Name", interview.Evaluator_ID);
             return View(interview);
         }
+
 
         // GET: Interviews/Edit/5
         public ActionResult Edit(int? id)

@@ -5,7 +5,9 @@
 }
 
 <h2>Verify</h2>
-
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 <div>
     <h4>Application</h4>
     <hr />
@@ -18,7 +20,7 @@
             @Html.DisplayFor(model => model.Student_No)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Application_Status)
         </dt>
 
@@ -40,7 +42,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Application_Decision_Desc)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Applicant_First_Name)
@@ -141,6 +143,15 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Verify", "VerifyApplicationList", new { id = Model.Application_ID })
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10" >
+            @Html.ActionLink("Verify", "Verify2", new { id = Model.Application_ID }, new { onclick = "return confirm('Are you sure you want to verify this application?');" })
+            | @Html.ActionLink("View Application", "Download", "Documents", new { id = Model.Application_ID }, null)
+        </div>
+    </div>
+    
 
 </p>
+
+}

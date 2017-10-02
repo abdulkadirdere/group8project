@@ -22,7 +22,16 @@ namespace PAAS.Models
 
         [Display(Name = "Document Type")]
         public string Document_Type { get; set; }
+        
+        [Required(ErrorMessage = "Please upload a document in .PDF format")]
+        [DataType(DataType.Upload)]
+        [Display(Name = "Select File")]
+        public byte[] Document_File { get; set; }
+    
 
-        public virtual Application Application { get; set; }
+    public virtual Application Application { get; set; }
     }
+
 }
+
+

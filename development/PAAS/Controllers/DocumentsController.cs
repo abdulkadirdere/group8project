@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PAAS.DAL;
 using PAAS.Models;
+using System.IO;
 
 namespace PAAS.Controllers
 {
@@ -44,12 +45,79 @@ namespace PAAS.Controllers
             return View();
         }
 
+        public ActionResult Upload()
+        {
+            return View();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(HttpPostedFileBase files)
+        {
+
+            String FileExt = Path.GetExtension(files.FileName).ToUpper();
+
+            if (FileExt == ".PDF")
+            {
+                Stream str = files.InputStream;
+                BinaryReader Br = new BinaryReader(str);
+                Byte[] FileDet = Br.ReadBytes((Int32)str.Length);
+
+                Document document = new Document();
+
+                List<Application> l = db.Applications.ToList();
+                List<int> k = new List<int>();
+
+                foreach(Application a in l)
+                {
+                    k.Add(a.Application_ID);
+                }
+
+                int max = k.Max();
+
+                //document.Document_ID = 1;
+                document.Application_ID = max;
+                document.Document_File = FileDet;
+                document.Document_Name = files.FileName;
+                document.Document_Type = "Application";
+                db.Documents.Add(document);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+
+                ViewBag.FileStatus = "Invalid file format.";
+                return View();
+
+            }
+
+
+        }
+
+
+        [HttpGet]
+        public FileResult Download(int id)
+        {
+
+
+            List<Document> ObjFiles = db.Documents.ToList();
+
+            var FileById = (from FC in ObjFiles
+                            where FC.Application_ID.Equals(id)
+                            select new { FC.Document_Name, FC.Document_File }).ToList().FirstOrDefault();
+
+            return File(FileById.Document_File, "application/pdf", FileById.Document_Name);
+
+        }
+
         // POST: Documents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Document_ID,Application_ID,Document_Name,Document_Type")] Document document)
+        public ActionResult Create([Bind(Include = "Document_ID,Application_ID,Document_Name,Document_Type,Document_File")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +151,7 @@ namespace PAAS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Document_ID,Application_ID,Document_Name,Document_Type")] Document document)
+        public ActionResult Edit([Bind(Include = "Document_ID,Application_ID,Document_Name,Document_Type,Document_File")] Document document)
         {
             if (ModelState.IsValid)
             {

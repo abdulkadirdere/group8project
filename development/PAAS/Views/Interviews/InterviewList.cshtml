@@ -6,7 +6,8 @@
 
 <h2>Interview List</h2>
 
-
+@using (Html.BeginForm())
+{
 
 <table class="table">
     <tr>
@@ -53,11 +54,12 @@
                 @Html.DisplayFor(modelItem => item.Interview_Status)
             </td>
             <td>
-                @Html.ActionLink("Complete", "Complete", new { id = item.Interview_ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Interview_ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Interview_ID })
+                @Html.ActionLink("Complete", "Complete", new { id = item.Interview_ID }, new { onclick = "return confirm('Are you sure this interview is complete?');" }) |
+                @Html.ActionLink("Cancel", "Cancel", new { id = item.Interview_ID }, new { onclick = "return confirm('Are you sure this interview is cancelled?');" }) 
+
             </td>
         </tr>
     }
 
 </table>
+}

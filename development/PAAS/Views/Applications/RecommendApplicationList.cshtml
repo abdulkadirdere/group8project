@@ -1,0 +1,119 @@
+﻿@model IEnumerable<PAAS.Models.Application>
+@{
+    ViewBag.Title = "Recommend Application List";
+}
+
+<h2>Application List</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student_No)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Application_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Application_Recommend_Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Application_Decision_Desc)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Last_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_ID_Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Contact_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_School)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Faculty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Street_No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Street_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applicant_Province)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student_No)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Application_Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application_Recommend_Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Application_Decision_Desc)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_First_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Last_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_ID_Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Contact_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Faculty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Street_No)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Street_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Suburb)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Applicant_Province)
+            </td>
+            <td>
+                @Html.ActionLink("Process", "Recommend", new { id = item.Application_ID })
+            </td>
+        </tr>
+    }
+
+</table>
